@@ -1,0 +1,13 @@
+
+
+NVIDIA 
+
+RTX 3090 TP=2
+
+
+
+
+
+AMD
+
+MI300X
