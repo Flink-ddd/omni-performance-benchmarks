@@ -8,6 +8,10 @@ stage 0 for ready
 stage 1 for ready
 stage 2 for ready
 
+next step
+
+waiting all worker send Handshake Received
+
 1. test_model_integrity_post_wakeup
    
    description: 
