@@ -4,6 +4,10 @@
 
 RTX 3090 TP=2
 
+stage 0 for ready
+stage 1 for ready
+stage 2 for ready
+
 1. test_model_integrity_post_wakeup
 
 
