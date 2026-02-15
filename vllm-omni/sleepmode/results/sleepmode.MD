@@ -1,16 +1,32 @@
 
 
-## NVIDIA 
 
-RTX 3090 TP=2
+## processing
 
 stage 0 for ready
 stage 1 for ready
 stage 2 for ready
 
-next step
 
-waiting all worker send Handshake Received
+
+
+## next step
+
+waiting all worker send Handshake Received, Pending processing
+
+
+
+
+
+
+
+
+
+
+
+## NVIDIA 
+
+RTX 3090 TP=2
 
 1. test_model_integrity_post_wakeup
    
