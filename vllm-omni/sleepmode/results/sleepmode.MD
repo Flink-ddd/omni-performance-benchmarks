@@ -27,6 +27,7 @@ waiting all worker send Handshake Received, Pending processing
 ## NVIDIA 
 
 RTX 3090 TP=2
+RTX A5000 TP=2
 
 1. test_model_integrity_post_wakeup
    
