@@ -3,16 +3,17 @@
 
 ## processing
 
-stage 0 for ready
-stage 1 for ready
-stage 2 for ready
+stage 0 for ready,    successful
+stage 1 for ready,    successful
+stage 2 for ready,    successful
 
-
+waiting all worker send Handshake Received, successful
 
 
 ## next step
 
-waiting all worker send Handshake Received, Pending processing
+Logic for handling diffusion sleep and wakeup memory changes,  Pending processing
+
 
 
 
