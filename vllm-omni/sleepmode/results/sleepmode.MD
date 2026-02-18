@@ -21,6 +21,41 @@ Logic for handling llm and generation sleep and wakeup memory changes, process p
 
 
 
+
+
+
+
+
+
+## NVIDIA 
+
+RTX 3090 TP=2
+RTX A5000 TP=2
+
+1. test_llm_sleep_ack
+   
+description: 
+   
+result:
+
+
+
+2. test_diffusion_sleep_handshake
+   
+description: 
+   
+
+result:
+
+
+
+
+3. test_cross_device_cleanup
+
+description: 
+   
+result:
+
 --- Running test: test_cross_device_cleanup
 INFO 02-18 10:10:42 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
 INFO 02-18 10:10:42 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
@@ -37,65 +72,33 @@ INFO 02-18 10:10:42 [async_omni.py:628] [AsyncOrchestrator] Intercepted wrapped 
 
 
 
-
-## NVIDIA 
-
-RTX 3090 TP=2
-RTX A5000 TP=2
-
-1. test_llm_sleep_ack
-   
-   description: 
-   
-   result:
-
-
-
-2. test_diffusion_sleep_handshake
-   
-   description: 
-   
-   result:
-
-
-
-
-3. test_cross_device_cleanup
-
-   description: 
-   
-   result:
-
-
-
-
 4. test_diffusion_integrity_bit_level
    
-   description: 
+description: 
    
-   result:
+result:
 
 
 
 5. test_coordinated_cross_device
    
-   description: 
+description: 
    
-   result:
+result:
 
 
 6. test_auto_wakeup_llm
    
-   description: 
+description: 
    
-   result:
+result:
 
 
 7. test_error_fallback_and_timeout
    
-   description: 
+description: 
    
-   result:
+result:
 
 
 
@@ -106,41 +109,59 @@ MI300X TP=2
 
 
 
-1. test_model_integrity_post_wakeup
+1. test_llm_sleep_ack
    
-   description: 
+description: 
    
-   result:
+result:
 
 
 
-2. test_task1_physical_reclamation
-
-   description: 
+2. test_diffusion_sleep_handshake
    
-   result:
-
-
-
-3. test_task2_deterministic_handshake
-
-   description: 
+description: 
    
-   result:
+result:
 
 
 
 
-4. test_task3_auto_wakeup_protection
+3. test_cross_device_cleanup
 
-   description: 
+description: 
    
-   result:
+result:
 
 
 
-5. test_error_fallback_and_timeout 
 
-   description: 
+4. test_diffusion_integrity_bit_level
    
-   result:
+description: 
+   
+result:
+
+
+
+
+5. test_coordinated_cross_device
+   
+description: 
+   
+result:
+
+
+
+6. test_auto_wakeup_llm
+   
+description: 
+   
+result:
+
+
+
+1. test_error_fallback_and_timeout
+   
+description: 
+   
+result:
