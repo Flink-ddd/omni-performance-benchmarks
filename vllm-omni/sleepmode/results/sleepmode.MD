@@ -12,7 +12,9 @@ waiting all worker send Handshake Received, successful
 
 ## next step
 
-Logic for handling diffusion sleep and wakeup memory changes,  Pending processing
+Logic for handling diffusion sleep and wakeup memory changes,  successful
+
+Logic for handling llm and generation sleep and wakeup memory changes, process pending.
 
 
 
