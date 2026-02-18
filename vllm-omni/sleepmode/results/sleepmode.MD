@@ -43,7 +43,7 @@ INFO 02-18 10:10:42 [async_omni.py:628] [AsyncOrchestrator] Intercepted wrapped 
 RTX 3090 TP=2
 RTX A5000 TP=2
 
-1. test_model_integrity_post_wakeup
+1. test_llm_sleep_ack
    
    description: 
    
@@ -51,7 +51,7 @@ RTX A5000 TP=2
 
 
 
-2. test_task1_physical_reclamation
+2. test_diffusion_sleep_handshake
    
    description: 
    
@@ -60,7 +60,7 @@ RTX A5000 TP=2
 
 
 
-3. test_task2_deterministic_handshake
+3. test_cross_device_cleanup
 
    description: 
    
@@ -69,7 +69,7 @@ RTX A5000 TP=2
 
 
 
-4. test_task3_auto_wakeup_protection
+4. test_diffusion_integrity_bit_level
    
    description: 
    
@@ -77,12 +77,25 @@ RTX A5000 TP=2
 
 
 
-5. test_error_fallback_and_timeout 
+5. test_coordinated_cross_device
    
    description: 
    
    result:
 
+
+6. test_auto_wakeup_llm
+   
+   description: 
+   
+   result:
+
+
+7. test_error_fallback_and_timeout
+   
+   description: 
+   
+   result:
 
 
 
