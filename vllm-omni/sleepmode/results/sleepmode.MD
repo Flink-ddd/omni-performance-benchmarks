@@ -26,6 +26,21 @@ Logic for handling llm and generation sleep and wakeup memory changes, successfu
 
 
 
+overall
+
+
+测试项,物理含义,状态
+测试 1,LLM 睡眠信号与 10G+ 显存回收,SUCCESS
+测试 2-4,Diffusion 睡眠、唤醒及图像一致性,SUCCESS
+测试 5,GPU 1 异构引擎协同回收 (Talker + Flux),SUCCESS
+测试 6,自动唤醒保护 (睡觉时点 generate 自动重装权重),SUCCESS
+测试 7,异常与超时保护,待选
+
+
+
+
+
+
 
 
 
