@@ -162,6 +162,30 @@ description:
    
 result:
 
+--- Running test: test_coordinated_cross_device
+INFO 02-19 13:50:48 [omni_stage.py:566] [Stage-1] Status transitioned to: TRANSITIONING
+INFO 02-19 13:50:48 [omni_stage.py:570] [Stage-1] Submitting SLEEP task (Level: 2)
+INFO 02-19 13:50:48 [async_omni.py:885] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+INFO 02-19 13:50:48 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-19 13:50:48 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-19 13:50:48 [async_omni.py:885] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-1] INFO 02-19 13:50:48 [async_omni_llm.py:233] [AsyncOmniLLM] Engine Relay: Sleep Task c837f52b-8992-427b-87a0-be67c5ad1de1 (Level 2)
+[Stage-0] INFO 02-19 13:50:48 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 6c6e67c4-1be6-495d-95b6-13eb19178c9c (Level: 2)
+[Stage-0] INFO 02-19 13:50:48 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 6c6e67c4-1be6-495d-95b6-13eb19178c9c (Level: 2)
+[Stage-0] INFO 02-19 13:50:48 [diffusion_worker.py:253] [Diffusion Worker 0] Handshake Received: Task 6c6e67c4-1be6-495d-95b6-13eb19178c9c, Level 2
+[0;36m(EngineCore_DP0 pid=144301)[0;0m [Stage-1] INFO 02-19 13:50:48 [base.py:143] [Omni Worker 0] Handshake Received: Task c837f52b-8992-427b-87a0-be67c5ad1de1, Level 2
+[0;36m(EngineCore_DP0 pid=144301)[0;0m [Stage-1] INFO 02-19 13:50:48 [cumem.py:213] CuMemAllocator: sleep freed 0.47 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 0.47 GiB is discarded directly.
+[0;36m(EngineCore_DP0 pid=144301)[0;0m [Stage-1] INFO 02-19 13:50:48 [base.py:125] [LLM Worker 0] Sleep mode freed 0.57 GiB.
+[0;36m(EngineCore_DP0 pid=144301)[0;0m [Stage-1] INFO 02-19 13:50:48 [base.py:168] [Omni Worker 0] ACK emitted for Task c837f52b-8992-427b-87a0-be67c5ad1de1
+[Stage-1] INFO 02-19 13:50:48 [omni_stage.py:1323] [Stage-1] Sleep ACKs forwarded to Orchestrator
+INFO 02-19 13:50:48 [async_omni.py:632] [AsyncOrchestrator] Intercepted wrapped ACK for task c837f52b-8992-427b-87a0-be67c5ad1de1 from stage-1
+[Stage-0] INFO 02-19 13:50:48 [cumem.py:213] CuMemAllocator: sleep freed 14.89 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.89 GiB is discarded directly.
+[Stage-0] INFO 02-19 13:50:49 [diffusion_worker.py:209] Sleep mode freed 0.00 GiB memory, 14.89 GiB memory is still in use.
+[Stage-0] INFO 02-19 13:50:49 [diffusion_worker.py:275] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
+[Stage-0] INFO 02-19 13:50:49 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-19 13:50:49 [async_omni.py:632] [AsyncOrchestrator] Intercepted wrapped ACK for task 6c6e67c4-1be6-495d-95b6-13eb19178c9c from stage-0
+
+
 
 6. test_auto_wakeup_llm
    
@@ -170,11 +194,16 @@ description:
 result:
 
 
+
+
+
 7. test_error_fallback_and_timeout
    
 description: 
    
 result:
+
+
 
 
 
