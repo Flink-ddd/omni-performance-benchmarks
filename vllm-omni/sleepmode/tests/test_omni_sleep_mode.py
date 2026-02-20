@@ -183,3 +183,48 @@ class TestOmniSleepMode:
 
         assert freed_vram > 15.0 or final_vram < 5.0
         logger.info("SUCCESS: Heterogeneous VRAM cleanup verified on GPU 1.")
+
+    
+    @pytest.mark.asyncio
+    async def test_diffusion_vram_lifecycle_audit(self, diffusion_engine: AsyncOmni):
+        """Diffusion memory loop: Active -> Deep Sleep -> Active"""
+        device_id = 1
+        
+        # Record initial runtime video memory
+        torch.cuda.synchronize(device_id)
+        vram_initial = get_vram_info(device_id)["reserved"]
+        logger.info(f"Diffusion Initial VRAM (Active): {vram_initial:.2f} GiB")
+        
+        # level 2
+        logger.info("Triggering Level 2 Deep Sleep (Weight Offloading)...")
+        acks = await diffusion_engine.sleep(stage_ids=[0], level=2)
+        
+        # Verify physical recycling volume
+        total_freed = sum(getattr(ack, "freed_bytes", 0) for ack in acks) / 1024**3
+        logger.info(f"Worker reported freed: {total_freed:.2f} GiB")
+        
+        await asyncio.sleep(1)
+        torch.cuda.empty_cache()
+        vram_sleeping = get_vram_info(device_id)["reserved"]
+        logger.info(f"VRAM during Sleep: {vram_sleeping:.2f} GiB")
+        
+        assert vram_sleeping < 3.0, f"Reclamation failed, still holding {vram_sleeping:.2f} GiB"
+
+        logger.info("Triggering Wake-up (Reloading weights to GPU)...")
+        await diffusion_engine.wake_up(stage_ids=[0])
+        
+        await asyncio.sleep(1)
+        torch.cuda.synchronize(device_id)
+        vram_restored = get_vram_info(device_id)["reserved"]
+        logger.info(f"VRAM after Wake-up: {vram_restored:.2f} GiB")
+        
+        assert abs(vram_restored - vram_initial) < 2.0, "VRAM failed to restore correctly"
+        
+        logger.info("Running final smoke test generation...")
+        prompt = "Kuala Lumpur skyline at night"
+        sp = OmniDiffusionSamplingParams(num_inference_steps=2, height=512, width=512)
+        async for output in diffusion_engine.generate(prompt, request_id="lifecycle-check", sampling_params_list=[sp]):
+            assert output.images[0] is not None
+            
+        logger.info("SUCCESS: Diffusion VRAM lifecycle (Reclaim/Reload) fully audited.")
+
