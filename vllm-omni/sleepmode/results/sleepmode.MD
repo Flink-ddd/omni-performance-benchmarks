@@ -204,42 +204,40 @@ description:
 result:
 
 --- Running test: test_coordinated_cross_device
-INFO 02-20 09:59:26 [omni_stage.py:566] [Stage-1] Status transitioned to: TRANSITIONING
-INFO 02-20 09:59:26 [omni_stage.py:570] [Stage-1] Submitting SLEEP task (Level: 2)
-INFO 02-20 09:59:26 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
-INFO 02-20 09:59:26 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
-INFO 02-20 09:59:26 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
-INFO 02-20 09:59:26 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
-[Stage-0] INFO 02-20 09:59:26 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 5564afaf-7d4e-4a8c-8c93-a5a1cb651932 (Level: 2)
-[Stage-0] INFO 02-20 09:59:26 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 5564afaf-7d4e-4a8c-8c93-a5a1cb651932 (Level: 2)
-[Stage-0] INFO 02-20 09:59:26 [diffusion_worker.py:253] [Diffusion Worker 0] Handshake Received: Task 5564afaf-7d4e-4a8c-8c93-a5a1cb651932, Level 2
-[Stage-1] INFO 02-20 09:59:26 [async_omni_llm.py:228] [AsyncOmniLLM] Engine Relay: Sleep Task 61e1eba1-a75d-47c7-bb97-a78bceaec74f (Level 2)
-[0;36m(EngineCore_DP0 pid=123181)[0;0m [Stage-1] INFO 02-20 09:59:26 [base.py:157] [LLM Worker 0] Handshake Received: Task 61e1eba1-a75d-47c7-bb97-a78bceaec74f, Level 2
-[0;36m(EngineCore_DP0 pid=123181)[0;0m [Stage-1] INFO 02-20 09:59:26 [cumem.py:213] CuMemAllocator: sleep freed 0.47 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 0.47 GiB is discarded directly.
-[0;36m(EngineCore_DP0 pid=123181)[0;0m [Stage-1] INFO 02-20 09:59:26 [base.py:126] [LLM Worker 0] Level 2 Sleep: Offloading weights to CPU...
-[Stage-0] INFO 02-20 09:59:26 [cumem.py:213] CuMemAllocator: sleep freed 14.89 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.89 GiB is discarded directly.
-[Stage-0] INFO 02-20 09:59:26 [diffusion_worker.py:209] Sleep mode freed 0.00 GiB memory, 14.89 GiB memory is still in use.
-[Stage-0] INFO 02-20 09:59:26 [diffusion_worker.py:275] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
-[Stage-0] INFO 02-20 09:59:26 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
-INFO 02-20 09:59:26 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 5564afaf-7d4e-4a8c-8c93-a5a1cb651932 from stage-0
-INFO 02-20 09:59:26 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
-[0;36m(EngineCore_DP0 pid=123181)[0;0m [Stage-1] INFO 02-20 09:59:28 [base.py:134] [LLM Worker 0] Sleep mode freed 4.53 GiB.
-[0;36m(EngineCore_DP0 pid=123181)[0;0m [Stage-1] INFO 02-20 09:59:28 [base.py:182] [LLM Worker 0] ACK emitted for Task 61e1eba1-a75d-47c7-bb97-a78bceaec74f
-[Stage-1] INFO 02-20 09:59:28 [omni_stage.py:1323] [Stage-1] Sleep ACKs forwarded to Orchestrator
-INFO 02-20 09:59:28 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 61e1eba1-a75d-47c7-bb97-a78bceaec74f from stage-1
-INFO 02-20 09:59:28 [omni_stage.py:566] [Stage-1] Status transitioned to: SLEEPING
+INFO 02-20 10:34:11 [omni_stage.py:566] [Stage-1] Status transitioned to: TRANSITIONING
+INFO 02-20 10:34:11 [omni_stage.py:570] [Stage-1] Submitting SLEEP task (Level: 2)
+INFO 02-20 10:34:11 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+INFO 02-20 10:34:11 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-20 10:34:11 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-20 10:34:11 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-20 10:34:11 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: d26c3fa6-b43d-4f63-9c06-3d97b5c2bb44 (Level: 2)
+[Stage-0] INFO 02-20 10:34:11 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task d26c3fa6-b43d-4f63-9c06-3d97b5c2bb44 (Level: 2)
+[Stage-0] INFO 02-20 10:34:11 [diffusion_worker.py:253] [Diffusion Worker 0] Handshake Received: Task d26c3fa6-b43d-4f63-9c06-3d97b5c2bb44, Level 2
+[Stage-1] INFO 02-20 10:34:11 [async_omni_llm.py:228] [AsyncOmniLLM] Engine Relay: Sleep Task 35f6c7c9-4168-42c0-81a8-49bdd1a39d88 (Level 2)
+[0;36m(EngineCore_DP0 pid=140115)[0;0m [Stage-1] INFO 02-20 10:34:11 [base.py:157] [LLM Worker 0] Handshake Received: Task 35f6c7c9-4168-42c0-81a8-49bdd1a39d88, Level 2
+[0;36m(EngineCore_DP0 pid=140115)[0;0m [Stage-1] INFO 02-20 10:34:11 [cumem.py:213] CuMemAllocator: sleep freed 0.47 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 0.47 GiB is discarded directly.
+[0;36m(EngineCore_DP0 pid=140115)[0;0m [Stage-1] INFO 02-20 10:34:11 [base.py:126] [LLM Worker 0] Level 2 Sleep: Offloading weights to CPU...
+[Stage-0] INFO 02-20 10:34:11 [cumem.py:213] CuMemAllocator: sleep freed 14.89 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.89 GiB is discarded directly.
+[Stage-0] INFO 02-20 10:34:11 [diffusion_worker.py:209] Sleep mode freed 0.00 GiB memory, 14.89 GiB memory is still in use.
+[Stage-0] INFO 02-20 10:34:11 [diffusion_worker.py:275] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
+[Stage-0] INFO 02-20 10:34:11 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-20 10:34:11 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task d26c3fa6-b43d-4f63-9c06-3d97b5c2bb44 from stage-0
+INFO 02-20 10:34:11 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+[0;36m(EngineCore_DP0 pid=140115)[0;0m [Stage-1] INFO 02-20 10:34:13 [base.py:134] [LLM Worker 0] Sleep mode freed 4.53 GiB.
+[0;36m(EngineCore_DP0 pid=140115)[0;0m [Stage-1] INFO 02-20 10:34:13 [base.py:182] [LLM Worker 0] ACK emitted for Task 35f6c7c9-4168-42c0-81a8-49bdd1a39d88
+[Stage-1] INFO 02-20 10:34:13 [omni_stage.py:1323] [Stage-1] Sleep ACKs forwarded to Orchestrator
+INFO 02-20 10:34:13 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 35f6c7c9-4168-42c0-81a8-49bdd1a39d88 from stage-1
+INFO 02-20 10:34:13 [omni_stage.py:566] [Stage-1] Status transitioned to: SLEEPING
 PASSEDGPU cleanup disabled
-[Stage-0] INFO 02-20 09:59:29 [diffusion_worker.py:436] Worker 0: Received shutdown message
-[Stage-0] INFO 02-20 09:59:29 [diffusion_worker.py:457] event loop terminated.
-[Stage-0] INFO 02-20 09:59:29 [diffusion_worker.py:488] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
-[Stage-0] INFO 02-20 09:59:33 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
-[Stage-0] INFO 02-20 09:59:33 [omni_stage.py:1428] Stage worker exiting
-[rank0]:[W220 09:59:34.455321261 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[rank0]:[W220 09:59:34.532315538 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[Stage-0] INFO 02-20 09:59:35 [omni_stage.py:1428] Stage worker exiting
-[Stage-1] INFO 02-20 09:59:35 [omni_stage.py:1428] Stage worker exiting
+[Stage-0] INFO 02-20 10:34:14 [diffusion_worker.py:436] Worker 0: Received shutdown message
+[Stage-0] INFO 02-20 10:34:14 [diffusion_worker.py:457] event loop terminated.
+[Stage-0] INFO 02-20 10:34:14 [diffusion_worker.py:488] Worker 0: Shutdown complete.
+[Stage-0] INFO 02-20 10:34:18 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
+[Stage-0] INFO 02-20 10:34:18 [omni_stage.py:1428] Stage worker exiting
+[rank0]:[W220 10:34:19.356637799 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[rank0]:[W220 10:34:19.383553223 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[Stage-0] INFO 02-20 10:34:20 [omni_stage.py:1428] Stage worker exiting
+[Stage-1] INFO 02-20 10:34:20 [omni_stage.py:1428] Stage worker exiting
 
 
 =============================== warnings summary ===============================
@@ -250,7 +248,8 @@ PASSEDGPU cleanup disabled
   <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========== 1 passed, 4 deselected, 2 warnings in 248.93s (0:04:08) ============
+=========== 1 passed, 4 deselected, 2 warnings in 384.72s (0:06:24) ============
+
 
 
 
@@ -264,6 +263,22 @@ PASSEDGPU cleanup disabled
 ## AMD
 
 MI300X TP=2
+
+### example
+Run in the first window
+amd-smi metric --csv -w 1 > vram_audit_pro_amd.csv
+
+or
+
+while true; do 
+  rocm-smi --csv --showmemuse | grep -v "device" >> vram_audit_pro_amd.csv; 
+  sleep 1; 
+done
+
+
+
+Run in the second window
+pytest -v -s --asyncio-mode=auto tests/entrypoints/test_omni_sleep_mode.py -k test_coordinated_cross_device  2>&1 | tee test_results.log
 
 
 
