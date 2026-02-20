@@ -1,6 +1,15 @@
 
 
 
+
+
+ 
+监控需求      NVIDIA (A5000) 命令             AMD (MI300X)
+实时监控      watch nvidia-smi               watch rocm-smi
+显存细分      nvidia-smi -q -d MEMORY        rocm-smi --showmeminfo vram
+权重加载监控   查看 GPU-Util                  rocm-smi --showuse
+
+
 ## processing
 
 stage 0 for ready,    successful
