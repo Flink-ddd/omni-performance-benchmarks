@@ -61,9 +61,13 @@ overall
 
 RTX A5000 TP=2
 
-run this command
-
+### example
+Run in the first window
 nvidia-smi --query-gpu=timestamp,memory.used,memory.free --format=csv -l 1 > vram_leak_check.csv
+
+
+Run in the second window
+pytest -v -s --asyncio-mode=auto tests/entrypoints/test_omni_sleep_mode.py -k test_coordinated_cross_device  2>&1 | tee test_results.log
 
 
 
