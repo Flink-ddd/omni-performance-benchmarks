@@ -13,12 +13,12 @@ Logic for handling diffusion sleep and wakeup memory changes,  successful
 
 Logic for handling llm and generation sleep and wakeup memory changes, successful
 
+test pytest 5, successful
+
 
 ## next step
 
-1. test other pytest 5,6,7
-
-2. add AMD logic 
+1. add AMD logic and test AMD
 
 
 
