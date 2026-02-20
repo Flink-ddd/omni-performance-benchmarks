@@ -10,6 +10,9 @@
 权重加载监控   查看 GPU-Util                  rocm-smi --showuse
 
 
+
+
+
 ## processing
 
 stage 0 for ready,    successful
@@ -57,6 +60,10 @@ overall
 ## NVIDIA 
 
 RTX A5000 TP=2
+
+run this command
+
+nvidia-smi --query-gpu=timestamp,memory.used,memory.free --format=csv -l 1 > vram_leak_check.csv
 
 1. test_llm_sleep_ack
    
