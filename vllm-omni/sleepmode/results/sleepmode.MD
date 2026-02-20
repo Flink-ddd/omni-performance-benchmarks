@@ -63,11 +63,17 @@ RTX A5000 TP=2
 
 ### example
 Run in the first window
-nvidia-smi --query-gpu=timestamp,memory.used,memory.free --format=csv -l 1 > vram_leak_check.csv
+nvidia-smi --query-gpu=timestamp,index,name,memory.used,memory.free --format=csv -l 1 > vram_audit_pro.csv
 
 
 Run in the second window
 pytest -v -s --asyncio-mode=auto tests/entrypoints/test_omni_sleep_mode.py -k test_coordinated_cross_device  2>&1 | tee test_results.log
+
+
+see details vram_recycling_unittest_5.png
+
+![alt text](vram_recycling_unittest_5.png)
+
 
 
 
