@@ -325,7 +325,37 @@ description:
    
 result:
 
-
+--- Running test: test_diffusion_integrity_bit_level
+INFO 02-22 15:20:22 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-22 15:20:22 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-22 15:20:22 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-22 15:20:34 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-22 15:20:34 [diffusion_engine.py:110] Post-processing completed in 0.1087 seconds
+INFO 02-22 15:20:34 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-22 15:20:34 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-22 15:20:34 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-22 15:20:34 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 2cf5f67a-095e-44f4-b9c6-402005552b11 (Level: 2)
+[Stage-0] INFO 02-22 15:20:34 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 2cf5f67a-095e-44f4-b9c6-402005552b11 (Level: 2)
+[Stage-0] INFO 02-22 15:20:34 [diffusion_worker.py:261] [Diffusion Worker 0] Handshake Received: Task 2cf5f67a-095e-44f4-b9c6-402005552b11, Level 2
+[Stage-0] INFO 02-22 15:20:34 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-22 15:20:35 [diffusion_worker.py:216] Sleep mode freed 2.02 GiB memory, 15.08 GiB memory is still in use.
+[Stage-0] INFO 02-22 15:20:35 [diffusion_worker.py:283] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
+[Stage-0] INFO 02-22 15:20:35 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-22 15:20:35 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 2cf5f67a-095e-44f4-b9c6-402005552b11 from stage-0
+INFO 02-22 15:20:35 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+INFO 02-22 15:20:35 [omni_stage.py:579] [Stage-0] Submitting WAKE_UP task
+INFO 02-22 15:20:35 [async_omni.py:921] [AsyncOrchestrator] Wake-up initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-22 15:20:35 [async_omni_diffusion.py:318] [Entrypoint] Relaying WakeUp Task: 8c7bc70e-5dc7-46cf-9d35-9a5025b490ea
+[Stage-0] INFO 02-22 15:20:35 [diffusion_engine.py:424] [Diffusion Engine Relay] Dispatching Wake-up Task 8c7bc70e-5dc7-46cf-9d35-9a5025b490ea to workers...
+[Stage-0] INFO 02-22 15:20:35 [diffusion_worker.py:294] [Diffusion Worker 0] Responding to Wake-up Task: 8c7bc70e-5dc7-46cf-9d35-9a5025b490ea
+[Stage-0] INFO 02-22 15:20:35 [diffusion_worker.py:303] [Diffusion Worker 0] Wake-up confirmed.
+INFO 02-22 15:20:35 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 8c7bc70e-5dc7-46cf-9d35-9a5025b490ea from stage-0
+INFO 02-22 15:20:35 [omni_stage.py:566] [Stage-0] Status transitioned to: RUNNING
+INFO 02-22 15:20:35 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-22 15:20:35 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-22 15:20:35 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-22 15:20:35 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-22 15:20:35 [diffusion_engine.py:110] Post-processing completed in 0.0103 seconds
 
 
 5. test_coordinated_cross_device
