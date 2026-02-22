@@ -227,6 +227,6 @@ class TestOmniSleepMode:
             
         logger.info("SUCCESS: Diffusion VRAM lifecycle (Reclaim/Reload) fully audited.")
         
-        logger.info("Waiting 5s for VRAM monitor to capture data...")
+        logger.info("Waiting 15s for VRAM monitor to capture data...")
         await asyncio.sleep(15)
 
