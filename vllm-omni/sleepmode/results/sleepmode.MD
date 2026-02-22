@@ -1,18 +1,3 @@
-
-
-
-
-
- 
-监控需求      NVIDIA (A5000) 命令             AMD (MI300X)
-实时监控      watch nvidia-smi               watch rocm-smi
-显存细分      nvidia-smi -q -d MEMORY        rocm-smi --showmeminfo vram
-权重加载监控   查看 GPU-Util                  rocm-smi --showuse
-
-
-
-
-
 ## processing
 
 stage 0 for ready,    successful
@@ -38,20 +23,6 @@ test pytest 5, successful
 
 
 
-overall
-
-
-测试项,物理含义,状态
-测试 1,LLM 睡眠信号与 10G+ 显存回收,SUCCESS
-测试 2-4,Diffusion 睡眠、唤醒及图像一致性,SUCCESS
-测试 5,GPU 1 异构引擎协同回收 (Talker + Flux),SUCCESS
-
-
-
-
-
-
-
 
 
 
@@ -61,16 +32,7 @@ overall
 
 RTX A5000 TP=2
 
-### example
-Run in the first window
-nvidia-smi --query-gpu=timestamp,index,name,memory.used,memory.free --format=csv -l 1 > vram_audit_pro.csv
 
-
-Run in the second window
-pytest -v -s --asyncio-mode=auto tests/entrypoints/test_omni_sleep_mode.py -k test_coordinated_cross_device  2>&1 | tee test_results.log
-
-
-see details vram_recycling_unittest_5.png
 
 ![alt text](vram_recycling_unittest_5.png)
 
@@ -252,7 +214,38 @@ PASSEDGPU cleanup disabled
 
 
 
+6. test_diffusion_vram_lifecycle_audit 
 
+description: 
+   
+result:
+
+--- Running test: test_diffusion_vram_lifecycle_audit
+INFO 02-22 05:31:24 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-22 05:31:24 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-22 05:31:24 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-22 05:31:24 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: cb09dca7-2a3d-46ad-b47c-6b66243b9680 (Level: 2)
+[Stage-0] INFO 02-22 05:31:24 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task cb09dca7-2a3d-46ad-b47c-6b66243b9680 (Level: 2)
+[Stage-0] INFO 02-22 05:31:24 [diffusion_worker.py:253] [Diffusion Worker 0] Handshake Received: Task cb09dca7-2a3d-46ad-b47c-6b66243b9680, Level 2
+[Stage-0] INFO 02-22 05:31:24 [cumem.py:213] CuMemAllocator: sleep freed 14.89 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.89 GiB is discarded directly.
+[Stage-0] INFO 02-22 05:31:25 [diffusion_worker.py:209] Sleep mode freed 0.00 GiB memory, 14.89 GiB memory is still in use.
+[Stage-0] INFO 02-22 05:31:25 [diffusion_worker.py:275] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
+[Stage-0] INFO 02-22 05:31:25 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-22 05:31:25 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task cb09dca7-2a3d-46ad-b47c-6b66243b9680 from stage-0
+INFO 02-22 05:31:25 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+INFO 02-22 05:31:26 [omni_stage.py:579] [Stage-0] Submitting WAKE_UP task
+INFO 02-22 05:31:26 [async_omni.py:921] [AsyncOrchestrator] Wake-up initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-22 05:31:26 [async_omni_diffusion.py:318] [Entrypoint] Relaying WakeUp Task: 6dddc7c3-b77c-4c28-92aa-6eb739f9f704
+[Stage-0] INFO 02-22 05:31:26 [diffusion_engine.py:424] [Diffusion Engine Relay] Dispatching Wake-up Task 6dddc7c3-b77c-4c28-92aa-6eb739f9f704 to workers...
+[Stage-0] INFO 02-22 05:31:26 [diffusion_worker.py:286] [Diffusion Worker 0] Responding to Wake-up Task: 6dddc7c3-b77c-4c28-92aa-6eb739f9f704
+[Stage-0] INFO 02-22 05:31:26 [diffusion_worker.py:295] [Diffusion Worker 0] Wake-up confirmed.
+INFO 02-22 05:31:26 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 6dddc7c3-b77c-4c28-92aa-6eb739f9f704 from stage-0
+INFO 02-22 05:31:26 [omni_stage.py:566] [Stage-0] Status transitioned to: RUNNING
+INFO 02-22 05:31:27 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-22 05:31:27 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-22 05:31:27 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-22 05:31:27 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-22 05:31:27 [diffusion_engine.py:110] Post-processing completed in 0.0516 seconds
 
 
 
@@ -264,21 +257,6 @@ PASSEDGPU cleanup disabled
 
 MI300X TP=2
 
-### example
-Run in the first window
-amd-smi metric --csv -w 1 > vram_audit_pro_amd.csv
-
-or
-
-while true; do 
-  rocm-smi --csv --showmemuse | grep -v "device" >> vram_audit_pro_amd.csv; 
-  sleep 1; 
-done
-
-
-
-Run in the second window
-pytest -v -s --asyncio-mode=auto tests/entrypoints/test_omni_sleep_mode.py -k test_coordinated_cross_device  2>&1 | tee test_results.log
 
 
 
@@ -323,3 +301,11 @@ description:
    
 result:
 
+
+
+
+6. test_diffusion_vram_lifecycle_audit 
+
+description: 
+   
+result:
