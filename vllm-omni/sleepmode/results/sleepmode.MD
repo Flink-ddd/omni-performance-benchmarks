@@ -12,10 +12,12 @@ Logic for handling llm and generation sleep and wakeup memory changes, successfu
 
 test pytest 5, successful
 
+add AMD logic, successful
+
 
 ## next step
 
-1. add AMD logic and test AMD
+1. test AMD, pending
 
 
 
@@ -275,6 +277,8 @@ result:
 
 
 
+
+
 2. test_diffusion_sleep_handshake
    
 description: 
@@ -363,6 +367,9 @@ INFO 02-22 15:20:35 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 description: 
    
 result:
+
+
+
 
 
 
