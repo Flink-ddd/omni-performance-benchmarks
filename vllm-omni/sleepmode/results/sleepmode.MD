@@ -281,6 +281,19 @@ description:
    
 result:
 
+--- Running test: test_diffusion_sleep_handshake
+INFO 02-22 15:08:36 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-22 15:08:36 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-22 15:08:36 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-22 15:08:36 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 3868e653-3030-4633-a616-b8f2c7df4ef9 (Level: 2)
+[Stage-0] INFO 02-22 15:08:36 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 3868e653-3030-4633-a616-b8f2c7df4ef9 (Level: 2)
+[Stage-0] INFO 02-22 15:08:36 [diffusion_worker.py:261] [Diffusion Worker 0] Handshake Received: Task 3868e653-3030-4633-a616-b8f2c7df4ef9, Level 2
+[Stage-0] INFO 02-22 15:08:36 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-22 15:08:37 [diffusion_worker.py:216] Sleep mode freed 2.99 GiB memory, 15.07 GiB memory is still in use.
+[Stage-0] INFO 02-22 15:08:37 [diffusion_worker.py:283] [Diffusion Worker 0]: ACK emitted. Freed 14.87 GiB.
+[Stage-0] INFO 02-22 15:08:37 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-22 15:08:37 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 3868e653-3030-4633-a616-b8f2c7df4ef9 from stage-0
+INFO 02-22 15:08:37 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
 
 
 
