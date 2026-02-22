@@ -33,8 +33,15 @@ test pytest 5, successful
 RTX A5000 TP=2
 
 
+### TEST 5
 
 ![alt text](vram_recycling_unittest_5.png)
+
+### TEST 6
+
+![alt text](vram_unitest_6.png)
+
+
 
 
 

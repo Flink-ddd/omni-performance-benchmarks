@@ -190,7 +190,6 @@ class TestOmniSleepMode:
         """Diffusion memory loop: Active -> Deep Sleep -> Active"""
         device_id = 1
         
-        # Record initial runtime video memory
         torch.cuda.synchronize(device_id)
         vram_initial = get_vram_info(device_id)["reserved"]
         logger.info(f"Diffusion Initial VRAM (Active): {vram_initial:.2f} GiB")
@@ -199,7 +198,6 @@ class TestOmniSleepMode:
         logger.info("Triggering Level 2 Deep Sleep (Weight Offloading)...")
         acks = await diffusion_engine.sleep(stage_ids=[0], level=2)
         
-        # Verify physical recycling volume
         total_freed = sum(getattr(ack, "freed_bytes", 0) for ack in acks) / 1024**3
         logger.info(f"Worker reported freed: {total_freed:.2f} GiB")
         
@@ -210,6 +208,7 @@ class TestOmniSleepMode:
         
         assert vram_sleeping < 3.0, f"Reclamation failed, still holding {vram_sleeping:.2f} GiB"
 
+        # wakeup
         logger.info("Triggering Wake-up (Reloading weights to GPU)...")
         await diffusion_engine.wake_up(stage_ids=[0])
         
@@ -227,4 +226,7 @@ class TestOmniSleepMode:
             assert output.images[0] is not None
             
         logger.info("SUCCESS: Diffusion VRAM lifecycle (Reclaim/Reload) fully audited.")
+        
+        logger.info("Waiting 5s for VRAM monitor to capture data...")
+        await asyncio.sleep(15)
 
