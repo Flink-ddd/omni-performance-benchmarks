@@ -51,6 +51,9 @@ RTX A5000 TP=2
 1. test_llm_sleep_ack
    
 description: 
+
+Unit Test 1: LLM 信号握手与物理显存回收审计
+验证 LLM Thinker 阶段在接收到睡眠指令后，能否准确返回物理显存回收的确定性数据（ACK）。
    
 result:
 
@@ -88,6 +91,9 @@ PASSEDGPU cleanup disabled
 2. test_diffusion_sleep_handshake
    
 description: 
+
+Unit Test 2: Diffusion 确定性握手协议验证
+测试 Diffusion Worker 在分布式环境下的同步握手链路，确保主进程能准确捕获各 Worker 的 sleep 信号。
    
 
 result:
@@ -110,6 +116,9 @@ INFO 02-19 09:52:15 [async_omni.py:628] [AsyncOrchestrator] Intercepted wrapped 
 3. test_cross_device_cleanup
 
 description: 
+
+Unit Test 3: 模型权重卸载与显存清空确定性审计
+物理核验 Diffusion 模型权重在 Level1 或 level2模式下的卸载效率，确保显存物理占用达到预期阈值。
    
 result:
 
@@ -131,7 +140,10 @@ INFO 02-18 10:10:42 [async_omni.py:628] [AsyncOrchestrator] Intercepted wrapped 
 
 4. test_diffusion_integrity_bit_level
    
-description: 
+description:
+
+Unit Test 4: 唤醒后推理一致性与位级精度校验
+验证 Diffusion 模型在经历“运行-睡眠-唤醒”全生命周期后，生成的图像数据是否具备位级一致性，防止模型状态损坏。
    
 result:
 
@@ -171,6 +183,9 @@ INFO 02-18 10:43:24 [async_omni.py:367] [AsyncOrchestrator] Entering scheduling 
 5. test_coordinated_cross_device
    
 description: 
+
+Unit Test 5: 异构引擎协同显存清理（共享 GPU测试）
+模拟极端压力场景，测试 LLM Talker 与 Diffusion Base 协同运行在同一张 GPU 时，能否有序地完成显存物理释放与回收。
    
 result:
 
@@ -226,6 +241,9 @@ PASSEDGPU cleanup disabled
 6. test_diffusion_vram_lifecycle_audit 
 
 description: 
+
+Unit Test 6: 端到端显存生命周期全循环审计
+完整覆盖“活跃 (Active) -> 深度睡眠 (Deep Sleep) -> 重新唤醒 (Restored)”的闭环流程，验证显存池的动态吞吐能力。
    
 result:
 
