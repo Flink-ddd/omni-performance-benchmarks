@@ -15,9 +15,10 @@ test pytest 5, successful
 add AMD logic, successful
 
 
+
 ## next step
 
-1. test AMD, pending
+1. test AMD, pending.
 
 
 
