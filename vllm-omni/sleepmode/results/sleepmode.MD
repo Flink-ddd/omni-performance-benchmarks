@@ -92,8 +92,8 @@ PASSEDGPU cleanup disabled
    
 description: 
 
-Unit Test 2: Diffusion 确定性握手协议验证
-测试 Diffusion Worker 在分布式环境下的同步握手链路，确保主进程能准确捕获各 Worker 的 sleep 信号。
+Unit Test 2: Diffusion 阶段分级睡眠动作与握手协议校验
+物理触发 Diffusion 阶段的分级睡眠（Offload/Discard），验证分布式 Worker 在真实显存动作后的同步握手链路。
    
 
 result:
