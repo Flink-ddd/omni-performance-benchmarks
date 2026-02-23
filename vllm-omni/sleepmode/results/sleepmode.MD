@@ -19,6 +19,7 @@ add AMD logic, successful
 ## next step
 
 1. test AMD, pending.
+2. test NVIDIA, pending. 
 
 
 
@@ -33,7 +34,7 @@ add AMD logic, successful
 
 ## NVIDIA 
 
-RTX A5000 TP=2
+NVIDIA RTXA6000 TP=2
 
 
 ### TEST 5
@@ -58,33 +59,38 @@ Unit Test 1: LLM 信号握手与物理显存回收审计
    
 result:
 
---- Running test: test_llm_sleep_ack
-INFO 02-19 13:26:36 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
-INFO 02-19 13:26:36 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
-INFO 02-19 13:26:36 [async_omni.py:885] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
-[Stage-0] INFO 02-19 13:26:36 [async_omni_llm.py:233] [AsyncOmniLLM] Engine Relay: Sleep Task 42204aa8-1f46-4e01-ada9-f8a229bd1027 (Level 2)
-[0;36m(EngineCore_DP0 pid=128264)[0;0m [Stage-0] INFO 02-19 13:26:36 [base.py:143] [Omni Worker 0] Handshake Received: Task 42204aa8-1f46-4e01-ada9-f8a229bd1027, Level 2
-[0;36m(EngineCore_DP0 pid=128264)[0;0m [Stage-0] INFO 02-19 13:26:37 [cumem.py:213] CuMemAllocator: sleep freed 9.49 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 9.49 GiB is discarded directly.
-[0;36m(EngineCore_DP0 pid=128264)[0;0m [Stage-0] INFO 02-19 13:26:37 [base.py:125] [LLM Worker 0] Sleep mode freed 10.88 GiB.
-[0;36m(EngineCore_DP0 pid=128264)[0;0m [Stage-0] INFO 02-19 13:26:37 [base.py:168] [Omni Worker 0] ACK emitted for Task 42204aa8-1f46-4e01-ada9-f8a229bd1027
-[Stage-0] INFO 02-19 13:26:37 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
-INFO 02-19 13:26:37 [async_omni.py:632] [AsyncOrchestrator] Intercepted wrapped ACK for task 42204aa8-1f46-4e01-ada9-f8a229bd1027 from stage-0
-PASSEDGPU cleanup disabled
-[rank0]:[W219 13:26:37.366831850 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[rank0]:[W219 13:26:37.417116291 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[Stage-0] INFO 02-19 13:26:37 [omni_stage.py:1428] Stage worker exiting
-[Stage-1] INFO 02-19 13:26:38 [omni_stage.py:1428] Stage worker exiting
+#### level 1
+
+--- Running test: test_diffusion_vram_lifecycle_audit
+INFO 02-23 16:33:04 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-23 16:33:04 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 1)
+INFO 02-23 16:33:04 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-23 16:33:04 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 4ee8d4a5-9252-4352-b3fd-1c60d11837dd (Level: 1)
+[Stage-0] INFO 02-23 16:33:04 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 4ee8d4a5-9252-4352-b3fd-1c60d11837dd (Level: 1)
+[Stage-0] INFO 02-23 16:33:04 [diffusion_worker.py:228] [Diffusion Worker 0] Handshake Received: Task 4ee8d4a5-9252-4352-b3fd-1c60d11837dd, Level 1
+[Stage-0] INFO 02-23 16:33:07 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 14.88 GiB is backed up in CPU and the rest 0.00 GiB is discarded directly.
+[Stage-0] INFO 02-23 16:33:07 [diffusion_worker.py:198] [Diffusion Worker 0] Level 1 Sleep: Freed 15.90 GiB. 2.06GiB memory is still in use.
+[Stage-0] INFO 02-23 16:33:07 [diffusion_worker.py:246] [Diffusion Worker 0]: ACK emitted. Freed 15.90 GiB.
+[Stage-0] INFO 02-23 16:33:07 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-23 16:33:07 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 4ee8d4a5-9252-4352-b3fd-1c60d11837dd from stage-0
+INFO 02-23 16:33:07 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+INFO 02-23 16:33:08 [omni_stage.py:579] [Stage-0] Submitting WAKE_UP task
+INFO 02-23 16:33:08 [async_omni.py:921] [AsyncOrchestrator] Wake-up initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-23 16:33:08 [async_omni_diffusion.py:318] [Entrypoint] Relaying WakeUp Task: 678d90c5-bc21-4796-b365-08df6b04453b
+[Stage-0] INFO 02-23 16:33:08 [diffusion_engine.py:424] [Diffusion Engine Relay] Dispatching Wake-up Task 678d90c5-bc21-4796-b365-08df6b04453b to workers...
+[Stage-0] INFO 02-23 16:33:08 [diffusion_worker.py:257] [Diffusion Worker 0] Responding to Wake-up Task: 678d90c5-bc21-4796-b365-08df6b04453b
+[Stage-0] INFO 02-23 16:33:08 [diffusion_worker.py:217] [Diffusion Worker 0] Wake-up complete.
+[Stage-0] INFO 02-23 16:33:08 [diffusion_worker.py:266] [Diffusion Worker 0] Wake-up confirmed.
+INFO 02-23 16:33:08 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 678d90c5-bc21-4796-b365-08df6b04453b from stage-0
+INFO 02-23 16:33:08 [omni_stage.py:566] [Stage-0] Status transitioned to: RUNNING
+INFO 02-23 16:33:09 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-23 16:33:09 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-23 16:33:09 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-23 16:33:09 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-23 16:33:10 [diffusion_engine.py:110] Post-processing completed in 0.1106 seconds
 
 
-=============================== warnings summary ===============================
-<frozen importlib._bootstrap>:488
-  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
-
-<frozen importlib._bootstrap>:488
-  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========== 1 passed, 6 deselected, 2 warnings in 130.71s (0:02:10) ============
+#### level 2
 
 
 
