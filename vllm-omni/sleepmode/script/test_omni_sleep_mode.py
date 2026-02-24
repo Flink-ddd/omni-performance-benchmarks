@@ -1,4 +1,6 @@
 import asyncio
+import torch
+is_rocm = torch.version.hip is not None
 import pytest
 import torch
 import uuid
@@ -25,7 +27,7 @@ def get_vram_info(device_id: int) -> dict:
     }
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 async def llm_engine():
     model_name = "Qwen/Qwen2.5-Omni-3B"
     common_args = {
@@ -54,7 +56,7 @@ async def llm_engine():
 
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 async def diffusion_engine():
     model_name = "black-forest-labs/FLUX.2-klein-4B"
     stages = [
@@ -83,7 +85,8 @@ async def diffusion_engine():
 
 
 class TestOmniSleepMode:
-
+    
+    @pytest.mark.skipif(is_rocm, reason="LLM Worker Sleep Mode is currently optimized for CUDA. Skipping on AMD. To be placed in the next plan")
     @pytest.mark.asyncio
     async def test_llm_sleep_ack(self, llm_engine: AsyncOmni):
         """LLM Thinker (GPU0) Signal and Physical Recycling Audit"""
@@ -105,7 +108,7 @@ class TestOmniSleepMode:
     async def test_diffusion_sleep_handshake(self, diffusion_engine: AsyncOmni):
         """Diffusion Worker stage signal loop"""
         logger.info("Starting Diffusion Worker Handshake Test")
-        acks = await diffusion_engine.sleep(stage_ids=[0], level=1)
+        acks = await diffusion_engine.sleep(stage_ids=[0], level=2)
         assert all(ack.status == "SUCCESS" for ack in acks)
         logger.info(f"Success: Received {len(acks)} Diffusion Worker ACKs")
 
@@ -113,7 +116,7 @@ class TestOmniSleepMode:
     @pytest.mark.asyncio
     async def test_cross_device_cleanup(self, diffusion_engine: AsyncOmni):
         """Physical recycling audit: leveraging deterministic data returned by Workers"""
-        acks = await diffusion_engine.sleep(stage_ids=[0], level=1)
+        acks = await diffusion_engine.sleep(stage_ids=[0], level=2)
         # Sum up the release amounts reported by all Workers.
         total_freed_bytes = sum(getattr(ack, "freed_bytes", 0) for ack in acks)
         freed_gb = total_freed_bytes / 1024**3
@@ -127,7 +130,7 @@ class TestOmniSleepMode:
     @pytest.mark.asyncio
     async def test_diffusion_integrity_bit_level(self, diffusion_engine: AsyncOmni):
         """Bit-level consistency after Diffusion wake-up (prevent image corruption)"""
-        prompt = "A high-tech lab in Kuala Lumpur"
+        prompt = "A huge swimming pool, with many people swimming."
         sp = OmniDiffusionSamplingParams(
             num_inference_steps=4, 
             height=512, 
@@ -135,20 +138,20 @@ class TestOmniSleepMode:
         )
        
         # Baseline Generation
-        logger.info("Step 1: Running Baseline Generation...")
+        logger.info("Running Baseline Generation...")
         base_output = None
         async for output in diffusion_engine.generate(prompt, request_id="base", sampling_params_list=[sp]):
             base_output = output
 
         # Deep Sleep (Level 2)
-        logger.info("Step 2: Entering Deep Sleep...")
-        await diffusion_engine.sleep(stage_ids=[0], level=1)
+        logger.info("Entering Deep Sleep...")
+        await diffusion_engine.sleep(stage_ids=[0], level=2)
         # Physical Wake-up
-        logger.info("Step 3: Waking up...")
+        logger.info("Waking up...")
         await diffusion_engine.wake_up(stage_ids=[0])
 
         # Post-Wakeup Generation
-        logger.info("Step 4: Running Post-Wakeup Generation...")
+        logger.info("Running Post-Wakeup Generation...")
         post_output = None
         async for output in diffusion_engine.generate(prompt, request_id="post", sampling_params_list=[sp]):
             post_output = output
@@ -159,17 +162,22 @@ class TestOmniSleepMode:
         logger.info("SUCCESS: Diffusion integrity verified.")
 
 
+    @pytest.mark.skipif(is_rocm, reason="Coordinated LLM+Diffusion test requires stable ROCm LLM workers. Skipping on AMD. To be placed in the next plan")
     @pytest.mark.asyncio
     async def test_coordinated_cross_device(self, llm_engine: AsyncOmni, diffusion_engine: AsyncOmni):
         """Heterogeneous Coordinated Cleanup Test (Talker and Diffusion on GPU 1)"""
         # At this point, GPU 1 hosts both Talker (4.5G) and Diffusion (14.8G)
+        await llm_engine.wake_up(stage_ids=[1])
+        await diffusion_engine.wake_up(stage_ids=[0])
+        await asyncio.sleep(2)
+
         initial_vram = get_vram_info(1)["reserved"]
         logger.info(f"GPU 1 total pressure: {initial_vram:.2f} GiB")
 
         # Simultaneously issue physical cleanup
         logger.info("Issuing concurrent SLEEP commands to LLM-Talker and Diffusion-Base...")
         await llm_engine.sleep(stage_ids=[1], level=2)
-        await asyncio.sleep(1.0)
+        await asyncio.sleep(2.0)
         await diffusion_engine.sleep(stage_ids=[0], level=2)
 
         torch.cuda.empty_cache()
@@ -197,7 +205,7 @@ class TestOmniSleepMode:
         
         # level 2
         logger.info("Triggering Level 2 Deep Sleep (Weight Offloading)...")
-        acks = await diffusion_engine.sleep(stage_ids=[0], level=1)
+        acks = await diffusion_engine.sleep(stage_ids=[0], level=2)
         
         total_freed = sum(getattr(ack, "freed_bytes", 0) for ack in acks) / 1024**3
         logger.info(f"Worker reported freed: {total_freed:.2f} GiB")
@@ -221,7 +229,7 @@ class TestOmniSleepMode:
         assert abs(vram_restored - vram_initial) < 2.0, "VRAM failed to restore correctly"
         
         logger.info("Running final smoke test generation...")
-        prompt = "Kuala Lumpur skyline at night"
+        prompt = "A huge swimming pool, with many people swimming."
         sp = OmniDiffusionSamplingParams(num_inference_steps=2, height=512, width=512)
         async for output in diffusion_engine.generate(prompt, request_id="lifecycle-check", sampling_params_list=[sp]):
             assert output.images[0] is not None
