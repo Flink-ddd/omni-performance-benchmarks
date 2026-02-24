@@ -1355,3 +1355,418 @@ INFO 02-23 06:27:05 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 [Stage-0] WARNING 02-23 06:27:05 [kv_transfer_manager.py:356] No connector available for receiving KV cache
 [Stage-0] INFO 02-23 06:27:05 [diffusion_engine.py:92] Generation completed successfully.
 [Stage-0] INFO 02-23 06:27:05 [diffusion_engine.py:110] Post-processing completed in 0.1101 seconds
+
+
+
+
+
+### 4个单元测试全部输出
+
+
+============================= test session starts ==============================
+platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /app/vllm-omni
+configfile: pyproject.toml
+plugins: asyncio-1.3.0, anyio-4.12.1, typeguard-4.3.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... WARNING 02-24 10:15:49 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+collected 6 items
+
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_llm_sleep_ack SKIPPED
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_sleep_handshake 
+=== PRE-TEST GPU CLEANUP ===
+GPU cleanup disabled
+INFO 02-24 10:15:50 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+INFO 02-24 10:15:50 [vllm.py:697] Asynchronous scheduling is enabled.
+--- Running test: test_diffusion_sleep_handshake
+INFO 02-24 10:15:50 [omni.py:117] Initializing stages for model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:15:50 [initialization.py:35] No OmniTransferConfig provided
+INFO 02-24 10:15:50 [omni_stage.py:239] [OmniStage] stage_config: {'stage_id': 0, 'stage_type': 'diffusion', 'runtime': {'process': True, 'devices': '1', 'max_batch_size': 1}, 'engine_args': {'model_stage': 'base', 'gpu_memory_utilization': 0.6, 'model_class_name': 'FluxPipeline', 'enable_sleep_mode': True, 'enforce_eager': True}, 'final_output': True, 'final_output_type': 'image'}
+INFO 02-24 10:15:50 [omni.py:341] [AsyncOrchestrator] Waiting for 1 stages to initialize (timeout: 600s)
+[Stage-0] WARNING 02-24 10:15:57 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:16:01] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:16:01 [weight_utils.py:46] Using model weights format ['*']
+[Stage-0] INFO 02-24 10:16:02 [multiproc_executor.py:74] Starting server...
+[Stage-0] WARNING 02-24 10:16:08 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:16:12] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:16:12 [diffusion_worker.py:306] Worker 0 created result MessageQueue
+[Stage-0] INFO 02-24 10:16:13 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+[Stage-0] INFO 02-24 10:16:13 [vllm.py:697] Asynchronous scheduling is enabled.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:16:13 [diffusion_worker.py:105] Worker 0: Initialized device and distributed environment.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:16:13 [parallel_state.py:565] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[Stage-0] INFO 02-24 10:16:13 [parallel_state.py:607] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+
+Loading checkpoint shards:   0%|                                    | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|██████████████              | 1/2 [00:02<00:02,  2.38s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.79s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.88s/it]
+[Stage-0] INFO 02-24 10:16:19 [platform.py:63] Defaulting to diffusion attention backend FLASH_ATTN
+[Stage-0] INFO 02-24 10:16:20 [weight_utils.py:580] No transformer/diffusion_pytorch_model.safetensors.index.json found in remote.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.64s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.64s/it]
+
+[Stage-0] INFO 02-24 10:16:23 [diffusers_loader.py:227] Loading weights took 3.14 seconds
+[Stage-0] INFO 02-24 10:16:23 [diffusion_model_runner.py:102] Model loading took 15.0488 GiB and 10.539902 seconds
+[Stage-0] INFO 02-24 10:16:23 [diffusion_model_runner.py:107] Model runner: Model loaded successfully.
+[Stage-0] INFO 02-24 10:16:23 [diffusion_model_runner.py:136] Model runner: Initialization complete.
+[Stage-0] INFO 02-24 10:16:23 [manager.py:90] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[Stage-0] INFO 02-24 10:16:23 [diffusion_worker.py:137] Worker 0: Initialization complete.
+[Stage-0] INFO 02-24 10:16:23 [diffusion_worker.py:444] Worker 0: Scheduler loop started.
+[Stage-0] INFO 02-24 10:16:23 [diffusion_worker.py:358] Worker 0 ready to receive requests via shared memory
+[Stage-0] INFO 02-24 10:16:23 [scheduler.py:38] SyncScheduler initialized result MessageQueue
+[Stage-0] INFO 02-24 10:16:23 [diffusion_engine.py:349] dummy run to warm up the model
+[Stage-0] INFO 02-24 10:16:23 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:16:23 [kv_transfer_manager.py:452] Request has no ID, cannot receive KV cache
+[aiter] import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[2026-02-24 10:16:45] INFO core.py:477: import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[aiter] type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[2026-02-24 10:16:45] WARNING core.py:927: type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[Stage-0] INFO 02-24 10:16:45 [async_omni_diffusion.py:113] AsyncOmniDiffusion initialized with model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:16:45 [omni.py:334] [AsyncOrchestrator] Stage-0 reported ready
+INFO 02-24 10:16:45 [omni.py:360] [AsyncOrchestrator] All stages initialized successfully
+WARNING 02-24 10:16:45 [async_omni.py:274] [AsyncOrchestrator] No LLM stage found, processors will not be available. This may cause issues with OpenAIServingModels.
+INFO 02-24 10:16:45 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-24 10:16:45 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-24 10:16:45 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:16:45 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: c6335e00-af93-4da8-b3eb-f6b7974393d2 (Level: 2)
+[Stage-0] INFO 02-24 10:16:45 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task c6335e00-af93-4da8-b3eb-f6b7974393d2 (Level: 2)
+[Stage-0] INFO 02-24 10:16:45 [diffusion_worker.py:221] [Diffusion Worker 0] Handshake Received: Task c6335e00-af93-4da8-b3eb-f6b7974393d2, Level 2
+[Stage-0] INFO 02-24 10:16:46 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:198] [Diffusion Worker 0] Level 2 Sleep: Freed 15.90 GiB. 2.06GiB memory is still in use.
+[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:239] [Diffusion Worker 0]: ACK emitted. Freed 15.90 GiB.
+[Stage-0] INFO 02-24 10:16:46 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-24 10:16:46 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task c6335e00-af93-4da8-b3eb-f6b7974393d2 from stage-0
+INFO 02-24 10:16:46 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+PASSED[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:400] Worker 0: Received shutdown message
+[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:421] event loop terminated.
+[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:452] Worker 0: Shutdown complete.
+!!!!!!! Segfault encountered !!!!!!!
+
+[Stage-0] INFO 02-24 10:16:49 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
+[Stage-0] INFO 02-24 10:16:49 [omni_stage.py:1428] Stage worker exiting
+GPU cleanup disabled
+
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_cross_device_cleanup 
+=== PRE-TEST GPU CLEANUP ===
+GPU cleanup disabled
+INFO 02-24 10:16:50 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+--- Running test: test_cross_device_cleanup
+INFO 02-24 10:16:50 [omni.py:117] Initializing stages for model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:16:50 [initialization.py:35] No OmniTransferConfig provided
+INFO 02-24 10:16:50 [omni_stage.py:239] [OmniStage] stage_config: {'stage_id': 0, 'stage_type': 'diffusion', 'runtime': {'process': True, 'devices': '1', 'max_batch_size': 1}, 'engine_args': {'model_stage': 'base', 'gpu_memory_utilization': 0.6, 'model_class_name': 'FluxPipeline', 'enable_sleep_mode': True, 'enforce_eager': True}, 'final_output': True, 'final_output_type': 'image'}
+INFO 02-24 10:16:50 [omni.py:341] [AsyncOrchestrator] Waiting for 1 stages to initialize (timeout: 600s)
+[Stage-0] WARNING 02-24 10:16:57 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:17:01] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:17:01 [weight_utils.py:46] Using model weights format ['*']
+[Stage-0] INFO 02-24 10:17:02 [multiproc_executor.py:74] Starting server...
+[Stage-0] WARNING 02-24 10:17:08 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:17:12] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:17:12 [diffusion_worker.py:306] Worker 0 created result MessageQueue
+[Stage-0] INFO 02-24 10:17:13 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+[Stage-0] INFO 02-24 10:17:13 [vllm.py:697] Asynchronous scheduling is enabled.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:17:13 [diffusion_worker.py:105] Worker 0: Initialized device and distributed environment.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:17:13 [parallel_state.py:565] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[Stage-0] INFO 02-24 10:17:13 [parallel_state.py:607] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+
+Loading checkpoint shards:   0%|                                    | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|██████████████              | 1/2 [00:02<00:02,  2.17s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.70s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.77s/it]
+[Stage-0] INFO 02-24 10:17:19 [platform.py:63] Defaulting to diffusion attention backend FLASH_ATTN
+[Stage-0] INFO 02-24 10:17:19 [weight_utils.py:580] No transformer/diffusion_pytorch_model.safetensors.index.json found in remote.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.65s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.65s/it]
+
+[Stage-0] INFO 02-24 10:17:22 [diffusers_loader.py:227] Loading weights took 3.15 seconds
+[Stage-0] INFO 02-24 10:17:23 [diffusion_model_runner.py:102] Model loading took 15.0488 GiB and 10.273209 seconds
+[Stage-0] INFO 02-24 10:17:23 [diffusion_model_runner.py:107] Model runner: Model loaded successfully.
+[Stage-0] INFO 02-24 10:17:23 [diffusion_model_runner.py:136] Model runner: Initialization complete.
+[Stage-0] INFO 02-24 10:17:23 [manager.py:90] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[Stage-0] INFO 02-24 10:17:23 [diffusion_worker.py:137] Worker 0: Initialization complete.
+[Stage-0] INFO 02-24 10:17:23 [diffusion_worker.py:444] Worker 0: Scheduler loop started.
+[Stage-0] INFO 02-24 10:17:23 [diffusion_worker.py:358] Worker 0 ready to receive requests via shared memory
+[Stage-0] INFO 02-24 10:17:23 [scheduler.py:38] SyncScheduler initialized result MessageQueue
+[Stage-0] INFO 02-24 10:17:23 [diffusion_engine.py:349] dummy run to warm up the model
+[Stage-0] INFO 02-24 10:17:23 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:17:23 [kv_transfer_manager.py:452] Request has no ID, cannot receive KV cache
+[aiter] import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[2026-02-24 10:17:45] INFO core.py:477: import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[aiter] type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[2026-02-24 10:17:45] WARNING core.py:927: type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[Stage-0] INFO 02-24 10:17:45 [async_omni_diffusion.py:113] AsyncOmniDiffusion initialized with model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:17:45 [omni.py:334] [AsyncOrchestrator] Stage-0 reported ready
+INFO 02-24 10:17:45 [omni.py:360] [AsyncOrchestrator] All stages initialized successfully
+WARNING 02-24 10:17:45 [async_omni.py:274] [AsyncOrchestrator] No LLM stage found, processors will not be available. This may cause issues with OpenAIServingModels.
+INFO 02-24 10:17:45 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-24 10:17:45 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-24 10:17:45 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:17:45 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 84ddf1d6-a9b9-40a4-9b93-2b76cbc610cb (Level: 2)
+[Stage-0] INFO 02-24 10:17:45 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 84ddf1d6-a9b9-40a4-9b93-2b76cbc610cb (Level: 2)
+[Stage-0] INFO 02-24 10:17:45 [diffusion_worker.py:221] [Diffusion Worker 0] Handshake Received: Task 84ddf1d6-a9b9-40a4-9b93-2b76cbc610cb, Level 2
+[Stage-0] INFO 02-24 10:17:45 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:198] [Diffusion Worker 0] Level 2 Sleep: Freed 15.90 GiB. 2.06GiB memory is still in use.
+[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:239] [Diffusion Worker 0]: ACK emitted. Freed 15.90 GiB.
+[Stage-0] INFO 02-24 10:17:46 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-24 10:17:46 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 84ddf1d6-a9b9-40a4-9b93-2b76cbc610cb from stage-0
+INFO 02-24 10:17:46 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+PASSED[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:400] Worker 0: Received shutdown message
+[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:421] event loop terminated.
+[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:452] Worker 0: Shutdown complete.
+!!!!!!! Segfault encountered !!!!!!!
+
+[Stage-0] INFO 02-24 10:17:49 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
+[Stage-0] INFO 02-24 10:17:49 [omni_stage.py:1428] Stage worker exiting
+GPU cleanup disabled
+
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_integrity_bit_level 
+=== PRE-TEST GPU CLEANUP ===
+GPU cleanup disabled
+INFO 02-24 10:17:50 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+--- Running test: test_diffusion_integrity_bit_level
+INFO 02-24 10:17:50 [omni.py:117] Initializing stages for model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:17:50 [initialization.py:35] No OmniTransferConfig provided
+INFO 02-24 10:17:50 [omni_stage.py:239] [OmniStage] stage_config: {'stage_id': 0, 'stage_type': 'diffusion', 'runtime': {'process': True, 'devices': '1', 'max_batch_size': 1}, 'engine_args': {'model_stage': 'base', 'gpu_memory_utilization': 0.6, 'model_class_name': 'FluxPipeline', 'enable_sleep_mode': True, 'enforce_eager': True}, 'final_output': True, 'final_output_type': 'image'}
+INFO 02-24 10:17:50 [omni.py:341] [AsyncOrchestrator] Waiting for 1 stages to initialize (timeout: 600s)
+[Stage-0] WARNING 02-24 10:17:57 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:18:01] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:18:02 [weight_utils.py:46] Using model weights format ['*']
+[Stage-0] INFO 02-24 10:18:02 [multiproc_executor.py:74] Starting server...
+[Stage-0] WARNING 02-24 10:18:09 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:18:12] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:18:12 [diffusion_worker.py:306] Worker 0 created result MessageQueue
+[Stage-0] INFO 02-24 10:18:13 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+[Stage-0] INFO 02-24 10:18:13 [vllm.py:697] Asynchronous scheduling is enabled.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:18:13 [diffusion_worker.py:105] Worker 0: Initialized device and distributed environment.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:18:13 [parallel_state.py:565] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[Stage-0] INFO 02-24 10:18:13 [parallel_state.py:607] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+
+Loading checkpoint shards:   0%|                                    | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|██████████████              | 1/2 [00:02<00:02,  2.47s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:04<00:00,  1.93s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:04<00:00,  2.01s/it]
+[Stage-0] INFO 02-24 10:18:20 [platform.py:63] Defaulting to diffusion attention backend FLASH_ATTN
+[Stage-0] INFO 02-24 10:18:20 [weight_utils.py:580] No transformer/diffusion_pytorch_model.safetensors.index.json found in remote.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.98s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.98s/it]
+
+[Stage-0] INFO 02-24 10:18:24 [diffusers_loader.py:227] Loading weights took 3.55 seconds
+[Stage-0] INFO 02-24 10:18:24 [diffusion_model_runner.py:102] Model loading took 15.0488 GiB and 11.147634 seconds
+[Stage-0] INFO 02-24 10:18:24 [diffusion_model_runner.py:107] Model runner: Model loaded successfully.
+[Stage-0] INFO 02-24 10:18:24 [diffusion_model_runner.py:136] Model runner: Initialization complete.
+[Stage-0] INFO 02-24 10:18:24 [manager.py:90] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[Stage-0] INFO 02-24 10:18:24 [diffusion_worker.py:137] Worker 0: Initialization complete.
+[Stage-0] INFO 02-24 10:18:24 [diffusion_worker.py:444] Worker 0: Scheduler loop started.
+[Stage-0] INFO 02-24 10:18:24 [diffusion_worker.py:358] Worker 0 ready to receive requests via shared memory
+[Stage-0] INFO 02-24 10:18:24 [scheduler.py:38] SyncScheduler initialized result MessageQueue
+[Stage-0] INFO 02-24 10:18:24 [diffusion_engine.py:349] dummy run to warm up the model
+[Stage-0] INFO 02-24 10:18:24 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:18:24 [kv_transfer_manager.py:452] Request has no ID, cannot receive KV cache
+[aiter] import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[2026-02-24 10:18:46] INFO core.py:477: import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[aiter] type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[2026-02-24 10:18:46] WARNING core.py:927: type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[Stage-0] INFO 02-24 10:18:47 [async_omni_diffusion.py:113] AsyncOmniDiffusion initialized with model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:18:47 [omni.py:334] [AsyncOrchestrator] Stage-0 reported ready
+INFO 02-24 10:18:47 [omni.py:360] [AsyncOrchestrator] All stages initialized successfully
+WARNING 02-24 10:18:47 [async_omni.py:274] [AsyncOrchestrator] No LLM stage found, processors will not be available. This may cause issues with OpenAIServingModels.
+INFO 02-24 10:18:47 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-24 10:18:47 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:18:47 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-24 10:18:47 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-24 10:18:47 [diffusion_engine.py:110] Post-processing completed in 0.1158 seconds
+INFO 02-24 10:18:47 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-24 10:18:47 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-24 10:18:47 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:18:47 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: ceb4a7f6-9f04-465c-90d3-8131d08f71b1 (Level: 2)
+[Stage-0] INFO 02-24 10:18:47 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task ceb4a7f6-9f04-465c-90d3-8131d08f71b1 (Level: 2)
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:221] [Diffusion Worker 0] Handshake Received: Task ceb4a7f6-9f04-465c-90d3-8131d08f71b1, Level 2
+[Stage-0] INFO 02-24 10:18:47 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:198] [Diffusion Worker 0] Level 2 Sleep: Freed 15.00 GiB. 2.08GiB memory is still in use.
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:239] [Diffusion Worker 0]: ACK emitted. Freed 15.00 GiB.
+[Stage-0] INFO 02-24 10:18:47 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-24 10:18:47 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task ceb4a7f6-9f04-465c-90d3-8131d08f71b1 from stage-0
+INFO 02-24 10:18:47 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+INFO 02-24 10:18:47 [omni_stage.py:579] [Stage-0] Submitting WAKE_UP task
+INFO 02-24 10:18:47 [async_omni.py:921] [AsyncOrchestrator] Wake-up initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:18:47 [async_omni_diffusion.py:318] [Entrypoint] Relaying WakeUp Task: 646ce5b7-10f7-4a5b-be05-496e11e37a50
+[Stage-0] INFO 02-24 10:18:47 [diffusion_engine.py:424] [Diffusion Engine Relay] Dispatching Wake-up Task 646ce5b7-10f7-4a5b-be05-496e11e37a50 to workers...
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:250] [Diffusion Worker 0] Responding to Wake-up Task: 646ce5b7-10f7-4a5b-be05-496e11e37a50
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:210] [Diffusion Worker 0] Wake-up complete.
+[Stage-0] INFO 02-24 10:18:47 [diffusion_worker.py:259] [Diffusion Worker 0] Wake-up confirmed.
+INFO 02-24 10:18:47 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 646ce5b7-10f7-4a5b-be05-496e11e37a50 from stage-0
+INFO 02-24 10:18:47 [omni_stage.py:566] [Stage-0] Status transitioned to: RUNNING
+INFO 02-24 10:18:47 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-24 10:18:47 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:18:47 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-24 10:18:47 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-24 10:18:48 [diffusion_engine.py:110] Post-processing completed in 0.0153 seconds
+PASSED[Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:400] Worker 0: Received shutdown message
+[Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:421] event loop terminated.
+[Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:452] Worker 0: Shutdown complete.
+!!!!!!! Segfault encountered !!!!!!!
+
+[Stage-0] INFO 02-24 10:18:50 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
+[Stage-0] INFO 02-24 10:18:50 [omni_stage.py:1428] Stage worker exiting
+GPU cleanup disabled
+
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_coordinated_cross_device SKIPPED
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_vram_lifecycle_audit 
+=== PRE-TEST GPU CLEANUP ===
+GPU cleanup disabled
+INFO 02-24 10:18:53 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+--- Running test: test_diffusion_vram_lifecycle_audit
+INFO 02-24 10:18:53 [omni.py:117] Initializing stages for model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:18:53 [initialization.py:35] No OmniTransferConfig provided
+INFO 02-24 10:18:53 [omni_stage.py:239] [OmniStage] stage_config: {'stage_id': 0, 'stage_type': 'diffusion', 'runtime': {'process': True, 'devices': '1', 'max_batch_size': 1}, 'engine_args': {'model_stage': 'base', 'gpu_memory_utilization': 0.6, 'model_class_name': 'FluxPipeline', 'enable_sleep_mode': True, 'enforce_eager': True}, 'final_output': True, 'final_output_type': 'image'}
+INFO 02-24 10:18:53 [omni.py:341] [AsyncOrchestrator] Waiting for 1 stages to initialize (timeout: 600s)
+[Stage-0] WARNING 02-24 10:19:00 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:19:04] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:19:04 [weight_utils.py:46] Using model weights format ['*']
+[Stage-0] INFO 02-24 10:19:05 [multiproc_executor.py:74] Starting server...
+[Stage-0] WARNING 02-24 10:19:11 [gpt_oss_triton_kernels_moe.py:55] Using legacy triton_kernels on ROCm
+[aiter] import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[2026-02-24 10:19:15] INFO core.py:477: import [module_aiter_enum] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_aiter_enum.so
+[Stage-0] INFO 02-24 10:19:15 [diffusion_worker.py:306] Worker 0 created result MessageQueue
+[Stage-0] INFO 02-24 10:19:16 [scheduler.py:224] Chunked prefill is enabled with max_num_batched_tokens=2048.
+[Stage-0] INFO 02-24 10:19:16 [vllm.py:697] Asynchronous scheduling is enabled.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:19:16 [diffusion_worker.py:105] Worker 0: Initialized device and distributed environment.
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Stage-0] INFO 02-24 10:19:16 [parallel_state.py:565] Building SP subgroups from explicit sp_group_ranks (sp_size=1, ulysses=1, ring=1, use_ulysses_low=True).
+[Stage-0] INFO 02-24 10:19:16 [parallel_state.py:607] SP group details for rank 0: sp_group=[0], ulysses_group=[0], ring_group=[0]
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+[Gloo] Rank 0 is connected to 0 peer ranks. Expected number of connected peer ranks is : 0
+
+Loading checkpoint shards:   0%|                                    | 0/2 [00:00<?, ?it/s]
+Loading checkpoint shards:  50%|██████████████              | 1/2 [00:02<00:02,  2.19s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.71s/it]
+Loading checkpoint shards: 100%|████████████████████████████| 2/2 [00:03<00:00,  1.78s/it]
+[Stage-0] INFO 02-24 10:19:22 [platform.py:63] Defaulting to diffusion attention backend FLASH_ATTN
+[Stage-0] INFO 02-24 10:19:22 [weight_utils.py:580] No transformer/diffusion_pytorch_model.safetensors.index.json found in remote.
+
+Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.69s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:02<00:00,  2.69s/it]
+
+[Stage-0] INFO 02-24 10:19:26 [diffusers_loader.py:227] Loading weights took 3.20 seconds
+[Stage-0] INFO 02-24 10:19:26 [diffusion_model_runner.py:102] Model loading took 15.0488 GiB and 10.415634 seconds
+[Stage-0] INFO 02-24 10:19:26 [diffusion_model_runner.py:107] Model runner: Model loaded successfully.
+[Stage-0] INFO 02-24 10:19:26 [diffusion_model_runner.py:136] Model runner: Initialization complete.
+[Stage-0] INFO 02-24 10:19:26 [manager.py:90] Initializing DiffusionLoRAManager: device=cuda:0, dtype=torch.bfloat16, max_cached_adapters=1, static_lora_path=None
+[Stage-0] INFO 02-24 10:19:26 [diffusion_worker.py:137] Worker 0: Initialization complete.
+[Stage-0] INFO 02-24 10:19:26 [diffusion_worker.py:444] Worker 0: Scheduler loop started.
+[Stage-0] INFO 02-24 10:19:26 [diffusion_worker.py:358] Worker 0 ready to receive requests via shared memory
+[Stage-0] INFO 02-24 10:19:26 [scheduler.py:38] SyncScheduler initialized result MessageQueue
+[Stage-0] INFO 02-24 10:19:26 [diffusion_engine.py:349] dummy run to warm up the model
+[Stage-0] INFO 02-24 10:19:26 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:19:26 [kv_transfer_manager.py:452] Request has no ID, cannot receive KV cache
+[aiter] import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[2026-02-24 10:19:48] INFO core.py:477: import [module_fmha_v3_fwd] under /usr/local/lib/python3.12/dist-packages/aiter/jit/module_fmha_v3_fwd.so
+[aiter] type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[2026-02-24 10:19:48] WARNING core.py:927: type hints mismatch, override to --> fmha_v3_fwd(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, dropout_p: float, softmax_scale: float, is_causal: bool, window_size_left: int, window_size_right: int, return_softmax_lse: bool, return_dropout_randval: bool, how_v3_bf16_cvt: int, out: Optional[torch.Tensor] = None, bias: Optional[torch.Tensor] = None, alibi_slopes: Optional[torch.Tensor] = None, gen: Optional[torch.Generator] = None) -> List[torch.Tensor]
+[Stage-0] INFO 02-24 10:19:48 [async_omni_diffusion.py:113] AsyncOmniDiffusion initialized with model: black-forest-labs/FLUX.2-klein-4B
+INFO 02-24 10:19:48 [omni.py:334] [AsyncOrchestrator] Stage-0 reported ready
+INFO 02-24 10:19:48 [omni.py:360] [AsyncOrchestrator] All stages initialized successfully
+WARNING 02-24 10:19:48 [async_omni.py:274] [AsyncOrchestrator] No LLM stage found, processors will not be available. This may cause issues with OpenAIServingModels.
+INFO 02-24 10:19:49 [omni_stage.py:566] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 02-24 10:19:49 [omni_stage.py:570] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 02-24 10:19:49 [async_omni.py:894] [AsyncOrchestrator] Sleep initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:19:49 [async_omni_diffusion.py:309] [Entrypoint] Relaying Sleep Task: 7e306879-32c1-4780-8f29-d5dd8339b15a (Level: 2)
+[Stage-0] INFO 02-24 10:19:49 [diffusion_engine.py:401] [Diffusion Engine Relay] Dispatching Sleep Task 7e306879-32c1-4780-8f29-d5dd8339b15a (Level: 2)
+[Stage-0] INFO 02-24 10:19:49 [diffusion_worker.py:221] [Diffusion Worker 0] Handshake Received: Task 7e306879-32c1-4780-8f29-d5dd8339b15a, Level 2
+[Stage-0] INFO 02-24 10:19:49 [cumem.py:213] CuMemAllocator: sleep freed 14.88 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 14.88 GiB is discarded directly.
+[Stage-0] INFO 02-24 10:19:49 [diffusion_worker.py:198] [Diffusion Worker 0] Level 2 Sleep: Freed 15.90 GiB. 2.06GiB memory is still in use.
+[Stage-0] INFO 02-24 10:19:49 [diffusion_worker.py:239] [Diffusion Worker 0]: ACK emitted. Freed 15.90 GiB.
+[Stage-0] INFO 02-24 10:19:49 [omni_stage.py:1323] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 02-24 10:19:49 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 7e306879-32c1-4780-8f29-d5dd8339b15a from stage-0
+INFO 02-24 10:19:49 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPING
+INFO 02-24 10:19:50 [omni_stage.py:579] [Stage-0] Submitting WAKE_UP task
+INFO 02-24 10:19:50 [async_omni.py:921] [AsyncOrchestrator] Wake-up initiated. Awaiting confirmation from 1 workers...
+[Stage-0] INFO 02-24 10:19:50 [async_omni_diffusion.py:318] [Entrypoint] Relaying WakeUp Task: 7b92d7e7-ea5d-400b-91d3-fc5008f92ea5
+[Stage-0] INFO 02-24 10:19:50 [diffusion_engine.py:424] [Diffusion Engine Relay] Dispatching Wake-up Task 7b92d7e7-ea5d-400b-91d3-fc5008f92ea5 to workers...
+[Stage-0] INFO 02-24 10:19:50 [diffusion_worker.py:250] [Diffusion Worker 0] Responding to Wake-up Task: 7b92d7e7-ea5d-400b-91d3-fc5008f92ea5
+[Stage-0] INFO 02-24 10:19:50 [diffusion_worker.py:210] [Diffusion Worker 0] Wake-up complete.
+[Stage-0] INFO 02-24 10:19:50 [diffusion_worker.py:259] [Diffusion Worker 0] Wake-up confirmed.
+INFO 02-24 10:19:50 [async_omni.py:641] [AsyncOrchestrator] Intercepted wrapped ACK for task 7b92d7e7-ea5d-400b-91d3-fc5008f92ea5 from stage-0
+INFO 02-24 10:19:50 [omni_stage.py:566] [Stage-0] Status transitioned to: RUNNING
+INFO 02-24 10:19:51 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling loop: stages=1, final_stage=0
+[Stage-0] INFO 02-24 10:19:51 [manager.py:538] Deactivating all adapters: 0 layers
+[Stage-0] WARNING 02-24 10:19:51 [kv_transfer_manager.py:356] No connector available for receiving KV cache
+[Stage-0] INFO 02-24 10:19:51 [diffusion_engine.py:92] Generation completed successfully.
+[Stage-0] INFO 02-24 10:19:52 [diffusion_engine.py:110] Post-processing completed in 0.1198 seconds
+PASSED[Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:400] Worker 0: Received shutdown message
+[Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:421] event loop terminated.
+[Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:452] Worker 0: Shutdown complete.
+!!!!!!! Segfault encountered !!!!!!!
+
+[Stage-0] INFO 02-24 10:20:09 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
+[Stage-0] INFO 02-24 10:20:09 [omni_stage.py:1428] Stage worker exiting
+GPU cleanup disabled
+
+
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+../../usr/local/lib/python3.12/dist-packages/antlr4/Lexer.py:12
+  /usr/local/lib/python3.12/dist-packages/antlr4/Lexer.py:12: DeprecationWarning: typing.io is deprecated, import directly from typing instead. typing.io will be removed in Python 3.13.
+    from typing.io import TextIO
+
+../../usr/local/lib/python3.12/dist-packages/antlr4/Parser.py:6
+  /usr/local/lib/python3.12/dist-packages/antlr4/Parser.py:6: DeprecationWarning: typing.io is deprecated, import directly from typing instead. typing.io will be removed in Python 3.13.
+    from typing.io import TextIO
+
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_integrity_bit_level
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_integrity_bit_level
+tests/entrypoints/test_omni_sleep_mode.py::TestOmniSleepMode::test_diffusion_vram_lifecycle_audit
+  /app/vllm-omni/vllm_omni/distributed/omni_connectors/utils/serialization.py:290: DeprecationWarning: 'mode' parameter is deprecated and will be removed in Pillow 13 (2026-10-15)
+    return Image.fromarray(arr, mode=mode)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+============= 4 passed, 2 skipped, 7 warnings in 267.62s (0:04:27) =============
+sys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
