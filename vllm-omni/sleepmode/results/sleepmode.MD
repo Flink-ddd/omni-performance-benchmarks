@@ -14,12 +14,16 @@ test pytest 5, successful
 
 add AMD logic, successful
 
+test AMD, pending. successful
+
+adjust draftPR content style, successful
+
 
 
 ## next step
 
-1. test AMD, pending.
-2. test NVIDIA, pending. 
+talk about RFC and open new PR, pending.
+
 
 
 
