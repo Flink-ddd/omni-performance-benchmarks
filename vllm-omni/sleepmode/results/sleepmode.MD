@@ -611,8 +611,6 @@ INFO 02-24 09:55:52 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 PASSED[Stage-0] INFO 02-24 09:55:52 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 09:55:52 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 09:55:52 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 09:55:55 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 09:55:55 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -688,8 +686,6 @@ INFO 02-24 09:56:25 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 PASSED[Stage-0] INFO 02-24 09:56:25 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 09:56:25 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 09:56:25 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 09:56:28 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 09:56:28 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -784,8 +780,6 @@ INFO 02-24 09:57:00 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 PASSED[Stage-0] INFO 02-24 09:57:01 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 09:57:01 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 09:57:01 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 09:57:04 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 09:57:04 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -983,8 +977,6 @@ INFO 02-24 09:58:31 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 PASSED[Stage-0] INFO 02-24 09:58:32 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 09:58:32 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 09:58:32 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 09:58:35 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 09:58:35 [omni_stage.py:1428] Stage worker exiting
 [rank0]:[W224 09:58:37.766649338 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
@@ -1078,8 +1070,6 @@ INFO 02-24 09:59:11 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 PASSED[Stage-0] INFO 02-24 09:59:26 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 09:59:26 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 09:59:26 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 09:59:29 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 09:59:29 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -1362,7 +1352,6 @@ INFO 02-23 06:27:05 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 
 ### 4个单元测试全部输出
 
-
 ============================= test session starts ==============================
 platform linux -- Python 3.12.12, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
 cachedir: .pytest_cache
@@ -1453,8 +1442,6 @@ INFO 02-24 10:16:46 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 PASSED[Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 10:16:46 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 10:16:49 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 10:16:49 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -1537,8 +1524,6 @@ INFO 02-24 10:17:46 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 PASSED[Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 10:17:46 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 10:17:49 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 10:17:49 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -1640,8 +1625,6 @@ INFO 02-24 10:18:47 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 PASSED[Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 10:18:48 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 10:18:50 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 10:18:50 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
@@ -1739,8 +1722,6 @@ INFO 02-24 10:19:51 [async_omni.py:378] [AsyncOrchestrator] Entering scheduling 
 PASSED[Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:400] Worker 0: Received shutdown message
 [Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:421] event loop terminated.
 [Stage-0] INFO 02-24 10:20:07 [diffusion_worker.py:452] Worker 0: Shutdown complete.
-!!!!!!! Segfault encountered !!!!!!!
-
 [Stage-0] INFO 02-24 10:20:09 [async_omni_diffusion.py:213] AsyncOmniDiffusion closed
 [Stage-0] INFO 02-24 10:20:09 [omni_stage.py:1428] Stage worker exiting
 GPU cleanup disabled
