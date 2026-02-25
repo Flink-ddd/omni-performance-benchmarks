@@ -18,11 +18,13 @@ test AMD, pending. successful
 
 adjust draftPR content style, successful
 
+talk about RFC Feb 25, finished.
+
 
 
 ## next step
 
-talk about RFC and open new PR, pending.
+ and open new PR, pending. 合并到0.18版本，3月底。
 
 
 
