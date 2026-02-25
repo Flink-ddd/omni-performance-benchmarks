@@ -26,6 +26,14 @@ talk about RFC Feb 25, finished.
 
  and open new PR, pending. 合并到0.18版本，3月底。
 
+ 待处理的点
+
+ 1：在sleep mode ack机制上跑bagel模型测试
+
+ 2：diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
+
+
+
 
 
 
