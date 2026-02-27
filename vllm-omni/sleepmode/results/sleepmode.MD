@@ -26,15 +26,17 @@ talk about RFC Feb 25, finished.
 
  and open new PR, pending. 合并到0.18版本，3月底。
 
+
+
  待处理的点
 
+前置PR
+ sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
+
+
+大PR
  1：在sleep mode ack机制上跑bagel模型测试
-
  2：diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
-
- 3：sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
-
-
 
 
 
