@@ -30,6 +30,8 @@ and open new PR, pending. 合并到0.18版本，3月底。
 
 待处理的点
 
+等待测试
+
 前置PR
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
 2. 在前置PR中，需要单卡，多卡测试bagel模型，看看是不是还有其他模型。
