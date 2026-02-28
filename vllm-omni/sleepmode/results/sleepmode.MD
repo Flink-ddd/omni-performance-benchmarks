@@ -39,6 +39,7 @@ talk about RFC Feb 25, finished.
 大PR
  1：在sleep mode ack机制上跑bagel模型测试
  2：diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
+ 3：在大PR中调用前置PR的计算方法
 
 
 
