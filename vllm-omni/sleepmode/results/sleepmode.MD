@@ -21,21 +21,21 @@ adjust draftPR content style, successful
 talk about RFC Feb 25, finished.
 
 
-前置PR相关的issue和PR都已经提交，等待审核。
+前置PR相关的issue和PR都已经提交，已成功提交PR，等待审核。
 备注：
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
-2. 在前置PR中，需要单卡，多卡测试bagel模型，看看是不是还有其他模型。
+2. 在前置PR中，A100 PCie 去掉超时设置，跑通bagel模型的单元测试。
 
 
 ## next step
 
-and open new PR, pending. 合并到0.18版本，3月底。
+and open new PR, pending. sleep mode ack PR合并到0.18版本，3月底。
 
 
 待处理的点
 
 大PR
- 1. 在sleep mode ack机制上跑bagel模型测试
+ 1. 在sleep mode ack机制上跑bagel模型测试（去掉draft PR中使用的qwen3和flux模型）
  2. diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
  3. 在大PR中调用前置PR的计算方法
    
