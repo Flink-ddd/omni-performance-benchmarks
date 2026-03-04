@@ -21,7 +21,7 @@ adjust draftPR content style, successful
 talk about RFC Feb 25, finished.
 
 
-前置PR相关的issue和PR都已经提交，已成功提交PR，等待审核。
+前置PR相关的issue和PR都已经提交，已成功提交PR，审核中，待进一步修改。
 备注：
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
 2. 在前置PR中，A100 PCie 去掉超时设置，跑通bagel模型的单元测试。
