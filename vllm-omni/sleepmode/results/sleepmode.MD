@@ -35,7 +35,7 @@ and open new PR, pending. sleep mode ack PR合并到0.18版本，3月底。
 
 待处理的点
 
-大PR
+sleep mode ack 大PR
  1. 在sleep mode ack机制上跑bagel模型测试（去掉draft PR中使用的qwen3和flux模型）
  2. diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
  3. 在大PR中调用前置PR的计算方法
