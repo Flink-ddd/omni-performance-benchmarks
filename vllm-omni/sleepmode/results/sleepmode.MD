@@ -32,13 +32,11 @@ talk about RFC Feb 25, finished.
 
 and open new PR, pending. sleep mode ack PR合并到0.18版本，3月底。
 
-
 待处理的点
-
 sleep mode ack 大PR
  1. 在sleep mode ack机制上跑bagel模型测试（去掉draft PR中使用的qwen3和flux模型，全面使用bagel模型进行测试。）
  2. diffusion在AMD卡上sleep 的时候回收效果不如NVIDIA，要进一步测试，是不是算错了。
- 3. 在大PR中调用前置PR的计算方法
+ 3. 在大PR中调用前置PR的计算方法（推动前置PR于3月中旬之前合并）
  4. 重新基于现有架构代码进行代码处理，重新提PR。
  5. AMD MI300X TP = 2
  6. NVIDIA A100 PCie TP = 2  或者H100等等
