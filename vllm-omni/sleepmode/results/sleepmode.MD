@@ -27,6 +27,8 @@ talk about RFC Feb 25, finished.
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
 2. 在前置PR中，A100 PCie 去掉超时设置，跑通bagel模型的单元测试。
 
+前置PR链接：https://github.com/vllm-project/vllm-omni/pull/1582
+
 
 ## next step
 
