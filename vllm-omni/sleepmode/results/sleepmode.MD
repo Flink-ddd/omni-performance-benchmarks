@@ -42,6 +42,9 @@ sleep mode ack 大PR
  4. 重新基于现有架构代码进行代码处理，重新提PR。
  5. AMD MI300X TP = 2
  6. NVIDIA A100 PCie TP = 2  或者H100等等
+
+
+sleep mode ack PR合并后，进行相关的pr或者issue问题解决
    
 
 
