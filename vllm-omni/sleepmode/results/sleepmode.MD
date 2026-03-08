@@ -44,6 +44,7 @@ sleep mode ack 大PR
  6. NVIDIA A100 PCie TP = 2  或者H100等等
 
 
+4月份
 sleep mode ack PR合并后，进行相关的pr或者issue问题解决
    
 
