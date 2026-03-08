@@ -30,6 +30,8 @@ talk about RFC Feb 25, finished.
 前置PR链接：https://github.com/vllm-project/vllm-omni/pull/1582
 
 
+
+
 ## next step
 
 and open new PR, pending. sleep mode ack PR合并到0.18版本，3月底。
@@ -42,6 +44,9 @@ sleep mode ack 大PR
  4. 重新基于现有架构代码进行代码处理，重新提PR。
  5. AMD MI300X TP = 2
  6. NVIDIA A100 PCie TP = 2  或者H100等等
+
+
+3月15号开始提一个新的sleep mode ack 大PR，以最新的omni的代码架构。
 
 
 4月份
