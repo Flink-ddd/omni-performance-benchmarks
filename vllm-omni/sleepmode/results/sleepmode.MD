@@ -21,7 +21,7 @@ adjust draftPR content style, successful
 talk about RFC Feb 25, finished.
 
 
-前置PR相关的issue和PR都已经提交，已成功提交PR，待最终合并。
+前置PR相关的issue和PR都已经提交，已成功提交PR，待最终合并。（争取在3月中旬合并此PR）
 
 备注：
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
