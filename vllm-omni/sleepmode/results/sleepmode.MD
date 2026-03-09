@@ -46,7 +46,7 @@ sleep mode ack 大PR
  6. NVIDIA A100 PCie TP = 2  或者H100等等
 
 
-3月15号开始提一个新的sleep mode ack 大PR，以最新的omni的代码架构。
+3月15号以最新的omni的代码架构,开始提一个新的sleep mode ack 大PR。
 
 
 4月份
