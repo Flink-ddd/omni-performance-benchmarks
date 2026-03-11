@@ -21,7 +21,7 @@ adjust draftPR content style, successful
 talk about RFC Feb 25, finished.
 
 
-前置PR相关的issue和PR都已经提交，已成功提交PR，待最终合并。（争取在3月13号合并此PR）
+前置PR相关的issue和PR都已经提交，已成功提交PR，待最终合并。（争取在3月13号合并此PR，预计3月12号可以合并。）
 
 备注：
 1. sleep mode 前置PR关于diffusion worker显存计算的正确性，根据bagel模型复现bug，进行解决处理。
@@ -47,7 +47,7 @@ sleep mode ack 大PR
  6. NVIDIA A100 PCie TP = 2  或者H100等等
 
 
-3月15号以最新的omni的代码架构,开始提一个新的sleep mode ack 大PR。差不多会在3月18号新PR会提出来，因为需要根据最新代码结构修改sleep mode ack draft PR的代码。
+3月15号以最新的omni的代码架构,开始提一个新的sleep mode ack 大PR。差不多会在3月17号新PR会提出来，留足够时间给reviewer和修改代码，因为需要根据最新代码结构修改sleep mode ack draft PR的代码。
 
 
 
