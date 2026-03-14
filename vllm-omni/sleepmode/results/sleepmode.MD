@@ -99,6 +99,15 @@ NVIDIA RTXA6000 TP=2
 
 
 
+NVIDIA A100PCIe TP=2
+
+### TEST 1
+
+### TEST 2
+
+
+
+
 
 1. test_llm_sleep_ack
    
@@ -1134,6 +1143,16 @@ GPU cleanup disabled
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 ================== 6 passed, 2 warnings in 309.81s (0:05:09) ===================
+
+
+
+
+
+
+
+
+
+
 
 
 
