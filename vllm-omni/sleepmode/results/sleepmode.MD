@@ -58,6 +58,11 @@ sleep mode ack 大PR
 
 4月份
 sleep mode ack PR合并后，进行相关的pr或者issue问题解决
+
+
+
+5月份
+处理vLLM和vLLM-omni其他的issue
    
 
 
