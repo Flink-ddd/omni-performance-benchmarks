@@ -29,7 +29,10 @@ talk about RFC Feb 25, finished.
 
 前置PR链接：https://github.com/vllm-project/vllm-omni/pull/1582
 
-代码已合并，但是回滚了一部分，因为涉及到diffusion 动态计算的部分，目前测试场景不是很全，需要后面作为单独的PR处理。
+代码已合并，但是回滚了一部分，因为涉及到diffusion 动态计算的部分，目前测试场景不是很全，需要后面作为单独的PR处理。（后续计划）
+
+
+
 
 
 
@@ -63,6 +66,9 @@ sleep mode ack PR合并后，进行相关的pr或者issue问题解决
 
 5月份
 处理vLLM和vLLM-omni其他的issue
+
+
+
    
 
 
