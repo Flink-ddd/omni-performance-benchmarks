@@ -152,7 +152,37 @@ INFO 02-24 03:26:20 [omni_stage.py:566] [Stage-0] Status transitioned to: SLEEPI
 
 
 
-2. test_diffusion_sleep_handshake
+bagel模型测试
+
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:26 [base.py:106] Offloader set to NoopOffloader
+(EngineCore_DP0 pid=90503) [Stage-1] INFO 03-16 11:12:26 [base.py:106] Offloader set to NoopOffloader
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:26 [gpu_model_runner.py:4255] Starting to load model ByteDance-Seed/BAGEL-7B-MoT...
+(EngineCore_DP0 pid=90503) [Stage-1] INFO 03-16 11:12:26 [gpu_model_runner.py:4255] Starting to load model ByteDance-Seed/BAGEL-7B-MoT...
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:26 [vllm.py:747] Asynchronous scheduling is enabled.
+..................................................................................
+INFO 03-16 11:12:37 [omni.py:536] [AsyncOrchestrator] Stage-1 reported ready
+INFO 03-16 11:12:37 [omni.py:536] [AsyncOrchestrator] Stage-0 reported ready
+INFO 03-16 11:12:37 [omni.py:565] [AsyncOrchestrator] All stages initialized successfully
+INFO 03-16 11:12:39 [async_omni.py:329] [AsyncOrchestrator] Initialized input_processor, io_processor, and model_config from stage-0
+[2026-03-16 11:12:39] INFO test_omni_sleep_mode.py:99: Thinker initial VRAM: 0.00 GiB
+INFO 03-16 11:12:39 [omni_stage.py:700] [Stage-0] Status transitioned to: TRANSITIONING
+INFO 03-16 11:12:39 [omni_stage.py:704] [Stage-0] Submitting SLEEP task (Level: 2)
+INFO 03-16 11:12:39 [async_omni.py:1091] [AsyncOrchestrator] Sleep initiated (Task: fdcb4fb8-5aaa-414c-ae97-28bba6783b79). Awaiting 1 ACKs...
+[Stage-0] INFO 03-16 11:12:39 [async_omni_llm.py:225] [AsyncOmniLLM] Engine Relay: Sleep Task fdcb4fb8-5aaa-414c-ae97-28bba6783b79 (Level 2)
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:39 [base.py:171] [LLM Worker 0] Handshake Received: Task fdcb4fb8-5aaa-414c-ae97-28bba6783b79, Level 2
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:39 [cumem.py:216] CuMemAllocator: sleep freed 37.00 GiB memory in total, of which 0.00 GiB is backed up in CPU and the rest 37.00 GiB is discarded directly.
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:39 [base.py:153] [LLM Worker 0] Level 2 Sleep: Freed 37.54 GiB. 0.74GiB memory is still in use.
+(EngineCore_DP0 pid=90497) [Stage-0] INFO 03-16 11:12:39 [base.py:193] [LLM Worker 0] ACK emitted for Task fdcb4fb8-5aaa-414c-ae97-28bba6783b79
+[Stage-0] INFO 03-16 11:12:39 [omni_stage.py:1584] [Stage-0] Sleep ACKs forwarded to Orchestrator
+INFO 03-16 11:12:39 [async_omni.py:883] [AsyncOrchestrator] Intercepted ACK for task fdcb4fb8-5aaa-414c-ae97-28bba6783b79 from stage-0
+INFO 03-16 11:12:39 [omni_stage.py:700] [Stage-0] Status transitioned to: SLEEPING
+[2026-03-16 11:12:39] INFO test_omni_sleep_mode.py:108: Thinker VRAM physically reclaimed: 37.54 GiB
+
+
+
+
+
+1. test_diffusion_sleep_handshake
    
 description: 
 
