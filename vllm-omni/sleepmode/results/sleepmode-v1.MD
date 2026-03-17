@@ -13,6 +13,8 @@ NVIDIA RTX A6000 TP =2
 
 
 
+
+
 AMD MI300X   tp =2 （3月17号测试）
 
 
