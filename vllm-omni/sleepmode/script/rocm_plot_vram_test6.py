@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 def generate_amd_perfect_plot():
-    csv_file = "data/mi300x/test6.csv"
+    csv_file = "data/mi300x/rocm-test6.csv"
     output_img = "vram_unitest_6.png"
     
     df = pd.read_csv(csv_file)
@@ -14,7 +14,7 @@ def generate_amd_perfect_plot():
     peak_val = df_gpu1.loc[peak_idx, 'vram_gib']
 
     after_peak = df_gpu1.loc[peak_idx:]
-    sleep_candidates = after_peak[after_peak['vram_gib'] < 10.0]
+    sleep_candidates = after_peak[after_peak['vram_gib'] < 5.0]
     
     if sleep_candidates.empty:
         print("未发现睡眠点")
@@ -32,12 +32,12 @@ def generate_amd_perfect_plot():
 
     # Active
     plt.annotate(f'Active State\n({peak_val:.1f} GiB)', 
-                 xy=(peak_idx, peak_val), xytext=(peak_idx - 10, peak_val + 5),
+                 xy=(peak_idx, peak_val), xytext=(peak_idx - 10, peak_val - 5),
                  arrowprops=dict(facecolor='black', shrink=0.05, width=1), ha='center', fontweight='bold')
 
     # Sleep (Reclaimed)
     plt.annotate(f'Sleep Mode\n(Reclaimed)', 
-                 xy=(sleep_idx, sleep_val), xytext=(sleep_idx - 5, sleep_val - 8),
+                 xy=(sleep_idx, sleep_val), xytext=(sleep_idx + 10, sleep_val - 5),
                  arrowprops=dict(facecolor='#27ae60', shrink=0.05, width=1), 
                  color='#27ae60', fontweight='bold', ha='center')
 

@@ -18,6 +18,7 @@ pytestmark = [pytest.mark.core_model, pytest.mark.gpu]
 
 
 
+
 def get_vram_info(device_id: int) -> dict:
     """Obtain a snapshot of the specified GPU's memory (GiB)."""
     torch.cuda.synchronize(device_id)
