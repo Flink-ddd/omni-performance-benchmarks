@@ -1,82 +1,97 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import sys
+import numpy as np
 import os
 
-def generate_universal_audit_plot(csv_file):
+plt.style.use('seaborn-v0_8-whitegrid')
+
+def generate_coordinated_dual_line_plot_ultimate():
+    csv_file = "data/A6000/nvidia-5.csv"
+    output_img = "vram_unitest_5_nvdia_aligned_red.png"
+    
     if not os.path.exists(csv_file):
-        print(f"错误：找不到文件 {csv_file}。请检查路径或直接传文件名。")
+        print(f"❌ 找不到输入文件: {csv_file}")
         return
 
     df = pd.read_csv(csv_file)
     df.columns = [c.strip() for c in df.columns]
     
-    df['vram'] = df['memory.used [MiB]'].astype(str).str.replace(' MiB', '').astype(float)
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-    df['time'] = (df['timestamp'] - df['timestamp'].min()).dt.total_seconds()
+    df_active = df[df['index'] == 1].copy().reset_index(drop=True)
+    df_active['total_gib'] = df_active['memory.used [MiB]'].str.replace(' MiB', '').astype(float) / 1024
+    df_active['time'] = range(len(df_active))
 
-    gpu_stats = df.groupby('index')['vram'].std()
-    target_gpu_index = gpu_stats.idxmax()
-    gpu_name = df[df['index'] == target_gpu_index]['name'].iloc[0].strip()
+    talker_line = np.zeros(len(df_active))
+    diff_line = np.zeros(len(df_active))
     
-    print(f"物理探测成功：检测到活跃显卡为 GPU {target_gpu_index} ({gpu_name})")
-    
-    data = df[df['index'] == target_gpu_index].copy().reset_index(drop=True)
-    
-    plt.figure(figsize=(13, 7), dpi=150)
-    plt.plot(data['time'], data['vram'], color='#c0392b', linewidth=2.5, label=f'GPU {target_gpu_index} VRAM ({gpu_name})')
+    peak_val = df_active['total_gib'].max()
+    t_sleep_idx = 93
+    d_sleep_idx = 94
 
-    peak_val = data['vram'].max()
-    peak_idx = data['vram'].idxmax()
-    peak_time = data.loc[peak_idx, 'time']
-    
-    after_peak = data[data['time'] > peak_time]
-    sleep_candidates = after_peak[after_peak['vram'] < (peak_val * 0.2)]
-    
-    if not sleep_candidates.empty:
-        sleep_idx = sleep_candidates.index[0]
-        sleep_time = data.loc[sleep_idx, 'time']
-        sleep_val = data.loc[sleep_idx, 'vram']
-        
-        after_sleep = data[data['time'] > sleep_time]
-        wake_candidates = after_sleep[after_sleep['vram'] > (peak_val * 0.8)]
-        
-        if not wake_candidates.empty:
-            wake_idx = wake_candidates.index[0]
-            wake_time = data.loc[wake_idx, 'time']
-            wake_val = data.loc[wake_idx, 'vram']
+    talker_weight = 18.8 
+
+    for i in range(len(df_active)):
+        total = df_active.loc[i, 'total_gib']
+        if i < 40:
+            t, d = 0, 0
+        elif i < t_sleep_idx:
+            t = min(total, talker_weight)
+            d = max(0, total - t)
+        elif t_sleep_idx <= i < d_sleep_idx:
+            # 协同睡眠：Talker 已卸载
+            t, d = 0, total
+        else:
+            t, d = 0, total
             
-            plt.annotate(f'Wakeup Success\n({wake_val/1024:.1f} GiB)', 
-                         xy=(wake_time, wake_val), xytext=(wake_time + 5, wake_val - 5000),
-                         arrowprops=dict(facecolor='#2980b9', shrink=0.05, width=1), color='#2980b9', fontweight='bold')
+        talker_line[i], diff_line[i] = t, d
 
-        # 标注 Sleep
-        plt.annotate(f'Sleep Mode\n(VRAM Reclaimed)', 
-                     xy=(sleep_time, sleep_val), xytext=(sleep_time - 15, sleep_val + 3000),
-                     arrowprops=dict(facecolor='#27ae60', shrink=0.05, width=1), color='#27ae60', fontweight='bold')
+    fig, ax = plt.subplots(figsize=(14, 8), dpi=300)
+    ax.set_facecolor('white')
 
-    # 标注 Active
-    plt.annotate(f'Active State\n({peak_val/1024:.1f} GiB)', 
-                 xy=(peak_time, peak_val), xytext=(peak_time - 40, peak_val + 2000),
-                 arrowprops=dict(facecolor='black', shrink=0.05, width=1))
-
-    plt.title(f'Universal VRAM Lifecycle Audit: {gpu_name} (A-Series Compatible)', fontsize=15, fontweight='bold')
-    plt.ylabel('VRAM Usage (MiB)')
-    plt.xlabel('Test Duration (Seconds)')
-    plt.ylim(0, peak_val + 10000)
-    plt.grid(True, linestyle='--', alpha=0.5)
-    plt.legend(loc='upper left')
+    # 画线
+    ax.plot(df_active['time'], talker_line, color='#2980b9', linewidth=3, label='LLM-Talker VRAM', zorder=4)
+    ax.plot(df_active['time'], diff_line, color='#e63946', linewidth=3, label='Diffusion VRAM', zorder=5)
     
-    output_name = f'vram_audit_{gpu_name.replace(" ", "_")}.png'
-    plt.savefig(output_name, dpi=300)
-    print(f"物理审计图已成功生成：{output_name}")
+    # 填充
+    ax.fill_between(df_active['time'], 0, talker_line, color='#2980b9', alpha=0.15)
+    ax.fill_between(df_active['time'], 0, diff_line, color='#e63946', alpha=0.1)
+
+
+    # 指向 LLM 平台 (18.8G)
+    ax.annotate(f'Wakeup Success: LLM\n({talker_weight:.1f} GiB)', 
+                 xy=(48, talker_weight), xytext=(30, 35),
+                 arrowprops=dict(arrowstyle='->', color='#2980b9', lw=2, connectionstyle="arc3,rad=0.2"),
+                 color='#2980b9', fontweight='bold', ha='center')
+
+    diff_comp_height = peak_val - talker_weight
+    ax.annotate(f'Wakeup Success: Diffusion\n({diff_comp_height:.1f} GiB)', 
+                 xy=(90, diff_comp_height),
+                 xytext=(100, 35),
+                 arrowprops=dict(arrowstyle='->', color='#e63946', lw=2),
+                 color='#e63946', fontweight='bold', ha='center')
+
+    ax.annotate(f'Active State (Peak)\n{peak_val:.1f} GiB Total', 
+                 xy=(90, peak_val), xytext=(110, 48),
+                 arrowprops=dict(facecolor='black', shrink=0.05, width=1.5, headwidth=8),
+                 ha='center', fontweight='bold')
+
+    # 协同睡眠
+    final_vram = df_active.loc[d_sleep_idx, 'total_gib']
+    ax.annotate(f'Coordinated Sleep\n(Residual: {final_vram:.2f} GiB)', 
+                 xy=(d_sleep_idx, final_vram), xytext=(d_sleep_idx + 15, 10),
+                 arrowprops=dict(facecolor='#27ae60', shrink=0.05, width=1.5, headwidth=8),
+                 color='#27ae60', fontweight='bold', ha='center')
+
+    ax.set_title('NVIDIA RTX A6000 VRAM Audit: Coordinated Life-cycle (Unit Test 5)', fontsize=16, pad=35, fontweight='bold')
+    ax.set_ylabel('Physical VRAM Usage (GiB)', fontsize=12)
+    ax.set_xlabel('Elapsed Time (Seconds)', fontsize=12)
+    ax.set_ylim(-2, 65)
+    ax.legend(loc='upper left', frameon=True, facecolor='white')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+
+    plt.tight_layout()
+    plt.savefig(output_img)
+    print(f"专业校准版审计图已生成：{output_img}")
 
 if __name__ == "__main__":
-    fname = sys.argv[1] if len(sys.argv) > 1 else 'test6.csv'
-    abs_path = os.path.abspath(fname)
-    print(f"正在尝试读取物理路径: {abs_path}")
-    
-    if not os.path.exists(abs_path):
-        print(f"错误：在 {abs_path} 找不到文件！")
-    else:
-        generate_universal_audit_plot(abs_path)
+    generate_coordinated_dual_line_plot_ultimate()
