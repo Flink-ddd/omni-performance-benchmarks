@@ -69,6 +69,9 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 (证据：服务端日志 INFO ... [diffusion_worker.py:301] [Worker 0] Sleep Level 2: physically freed 27.61 GiB)
 
 
+继续测试
+
+
 
 3月17号提交PR，最晚3月18号提交PR。（3月19号提交）
 
