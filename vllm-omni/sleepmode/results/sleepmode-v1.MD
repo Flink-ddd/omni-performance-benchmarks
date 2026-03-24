@@ -60,7 +60,13 @@ INFO 03-24 17:47:17 [omni_base.py:289] [AsyncOmni] Shutting down
 
 
 
+单元测试链路：
+AsyncOmni -> AsyncOmniEngine -> MQ -> base.py (Worker 进程) -> CuMemAllocator
+(证据：日志 (Worker pid=4071111) INFO ... [base.py:214] Level 2 Sleep: Freed 80.21 GiB)
 
+服务端链路：
+AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) -> CuMemAllocator
+(证据：服务端日志 INFO ... [diffusion_worker.py:301] [Worker 0] Sleep Level 2: physically freed 27.61 GiB)
 
 
 
