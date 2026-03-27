@@ -79,5 +79,7 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 
 解决review问题，推进合并，推进omni team尽量在25号合并。
 
+目前没有最新的review状态了，还在等待。
+
 
 
