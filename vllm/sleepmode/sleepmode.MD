@@ -7,3 +7,6 @@ PR: https://github.com/vllm-project/vllm/pull/37065
 跟踪此PR的状态，用户已经测试，没有问题，我推进一下合并。
 
 要根据reviewer的状态重新修改一下
+
+
+目前AMD-ci检查报错
