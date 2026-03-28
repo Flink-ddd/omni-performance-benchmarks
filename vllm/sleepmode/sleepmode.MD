@@ -9,4 +9,5 @@ PR: https://github.com/vllm-project/vllm/pull/37065
 要根据reviewer的状态重新修改一下
 
 
-目前AMD-ci检查报错
+需要增加单元测试
+
