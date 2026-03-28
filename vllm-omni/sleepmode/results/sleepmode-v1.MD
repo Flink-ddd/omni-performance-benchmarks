@@ -82,4 +82,6 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 目前没有最新的review状态了，还在等待。
 
 
+目前AMD-ci检查报错
+
 
