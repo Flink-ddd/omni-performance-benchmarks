@@ -92,4 +92,8 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 目前已经跑nightly-test测试
 
 
+4月2-3号
+推进合并
+
+
 
