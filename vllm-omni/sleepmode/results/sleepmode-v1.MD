@@ -88,3 +88,8 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 配合omni team的reviewer进行代码修复工作
 
 
+
+目前已经跑nightly-test测试
+
+
+
