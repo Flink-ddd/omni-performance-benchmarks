@@ -85,6 +85,7 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 目前AMD-ci检查报错
 
 
+
 配合omni team的reviewer进行代码修复工作
 
 
@@ -94,6 +95,9 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 
 4月2-3号
 推进合并
+
+
+目前修复相关的问题
 
 
 
