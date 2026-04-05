@@ -12,4 +12,7 @@ PR: https://github.com/vllm-project/vllm/pull/37065
 需要增加单元测试
 
 
+目前正在搁置，因为sleep mode原作者认为这块是驱动的问题。
+
+
 
