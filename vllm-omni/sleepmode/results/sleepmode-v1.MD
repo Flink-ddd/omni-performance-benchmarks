@@ -100,4 +100,7 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 目前修复相关的问题
 
 
+等待合并
+
+
 
