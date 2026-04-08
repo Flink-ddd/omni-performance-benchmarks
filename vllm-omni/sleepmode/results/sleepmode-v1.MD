@@ -103,4 +103,7 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 等待合并
 
 
+进入到组内测试，正在修改脚本。
+
+
 
