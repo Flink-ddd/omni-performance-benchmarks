@@ -107,3 +107,7 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 
 
 
+4月中旬争取合并PR
+
+
+
