@@ -78,36 +78,3 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 已增加doc
 
 解决review问题，推进合并，推进omni team尽量在25号合并。
-
-目前没有最新的review状态了，还在等待。
-
-
-目前AMD-ci检查报错
-
-
-
-配合omni team的reviewer进行代码修复工作
-
-
-4月1号
-目前已经跑nightly-test测试
-
-
-4月2-3号
-推进合并
-
-
-目前修复相关的问题
-
-
-等待合并
-
-
-进入到组内测试，正在修改脚本。
-
-
-
-4月中旬争取合并PR
-
-
-
