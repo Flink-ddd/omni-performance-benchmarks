@@ -78,3 +78,5 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 已增加doc
 
 解决review问题，推进合并，推进omni team尽量在25号合并。
+
+正在修复相关的CI问题
