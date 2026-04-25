@@ -82,4 +82,4 @@ AsyncOmni -> AsyncOmniEngine -> MQ -> diffusion_worker.py (Worker 子类进程) 
 正在修复相关的CI问题
 
 
-4月21号已合并
+4月21号已合并,版本是0.20.0
